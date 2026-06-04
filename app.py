@@ -158,17 +158,17 @@ if st.session_state.current_section != "FINISHED":
         if user_choice:
             answers[st.session_state.current_index] = user_choice.strip()
 
-    # Μπάρα πλοήγησης στο κάτω μέρος
+    # Μπάρα πλοήγησης στο κάτω μέρος — ΔΙΟΡΘΩΘΗΚΕ ΤΟ ΣΦΑΛΜΑ ΕΔΩ (Προστέθηκε το 3)
     st.divider()
-    c_prev, _, c_next = st.columns()
+    c_prev, c_center, c_next = st.columns(3)
     with c_prev:
         if st.session_state.current_index > 0:
-            if st.button("⬅️ Back"):
+            if st.button("⬅️ Back", use_container_width=True):
                 st.session_state.current_index -= 1
                 st.rerun()
     with c_next:
         if st.session_state.current_index < len(questions) - 1:
-            if st.button("Next ➡️"):
+            if st.button("Next ➡️", use_container_width=True):
                 st.session_state.current_index += 1
                 st.rerun()
 
@@ -222,6 +222,4 @@ else:
                 st.write(f"Your Answer: `{user_ans}` | Correct Answer: `{q['correct_answer']}`")
                 st.info(f"**Explanation:** {q['explanation']}")
 
-    if st.button("🔄 Start New Simulation"):
-        st.session_state.clear()
-        st.rerun()
+if st.button("🔄 Start New Simulation"):st.session_state.clear()st.rerun()
