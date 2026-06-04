@@ -72,6 +72,7 @@ if st.session_state.current_section != "FINISHED":
     # Αν λήξει ο χρόνος του Section
     if remaining == 0:
         if st.session_state.current_section == 1:
+            st.session_section = 2
             st.session_state.current_section = 2
             st.session_state.current_index = 0
             st.session_state.section_start_time = time.time()
@@ -158,7 +159,7 @@ if st.session_state.current_section != "FINISHED":
         if user_choice:
             answers[st.session_state.current_index] = user_choice.strip()
 
-    # Μπάρα πλοήγησης στο κάτω μέρος — ΔΙΟΡΘΩΘΗΚΕ ΤΟ ΣΦΑΛΜΑ ΕΔΩ (Προστέθηκε το 3)
+    # Μπάρα πλοήγησης στο κάτω μέρος
     st.divider()
     c_prev, c_center, c_next = st.columns(3)
     with c_prev:
@@ -221,5 +222,9 @@ else:
                     st.write(f"**Quantity A:** {q['quantity_a']} | **Quantity B:** {q['quantity_b']}")
                 st.write(f"Your Answer: `{user_ans}` | Correct Answer: `{q['correct_answer']}`")
                 st.info(f"**Explanation:** {q['explanation']}")
+    # Κουμπί επανεκκίνησης στην οθόνη αποτελεσμάτων
+    if st.button("🔄 Start New Simulation"):
+        st.session_state.clear()
+        st.rerun()
 
-if st.button("🔄 Start New Simulation"):st.session_state.clear()st.rerun()
+
