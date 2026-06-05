@@ -126,10 +126,12 @@ if st.session_state.current_section != "FINISHED":
     current_q = questions[st.session_state.current_index]
     
     st.subheader(f"Section {st.session_state.current_section} — Question {st.session_state.current_index + 1} of {len(questions)}")
-    #st.caption(f"Source: {current_q['book']} | ID: {current_q['id']}")
+    st.caption(f"Source: {current_q['book']} | ID: {current_q['id']}")
     st.divider()
-    
-    if current_q["type"] == "QC":
+
+    #Το .get() απορρίπτει το κρασάρισμα αν το πεδίο "type" ή "question_type" λείπει
+    q_type = current_q.get("type") or current_q.get("question_type")
+    if q_type in ["QC", "quantitative_comparison"]
         st.markdown(current_q["context"])
         col1, col2 = st.columns(2)
         with col1:
@@ -144,7 +146,8 @@ if st.session_state.current_section != "FINISHED":
         if user_choice:
             answers[st.session_state.current_index] = QC_KEYS[QC_OPTIONS.index(user_choice)]
 
-    elif current_q["type"] == "MC":
+    elif q_type in ["MC", "multiple_choice"]:
+
         st.markdown(current_q["question"])
         prev_ans = answers.get(st.session_state.current_index, None)
         default_idx = current_q["choices"].index(prev_ans) if prev_ans in current_q["choices"] else None
