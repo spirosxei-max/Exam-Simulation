@@ -126,7 +126,7 @@ if st.session_state.current_section != "FINISHED":
     current_q = questions[st.session_state.current_index]
     
     st.subheader(f"Section {st.session_state.current_section} — Question {st.session_state.current_index + 1} of {len(questions)}")
-    st.caption(f"Source: {current_q['book']} | ID: {current_q['id']}")
+    #st.caption(f"Source: {current_q['book']} | ID: {current_q['id']}")
     st.divider()
     
     if current_q["type"] == "QC":
