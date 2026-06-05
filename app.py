@@ -142,7 +142,7 @@ if q_type in ["QC", "quantitative_comparison"]:
         st.markdown(context_text)
         # Εμφάνιση του γεωμετρικού σχήματος αν υπάρχει
         if "svg_diagram" in current_q:
-            st.components.v1.html(current_q["svg_diagram"], height=220)
+            st.components.v1.html(current_q["svg_diagram"], height=300)
             
             col1, col2 = st.columns(2)
             with col1:
@@ -188,7 +188,7 @@ if q_type in ["QC", "quantitative_comparison"]:
             
             # Εμφάνιση του γραφήματος ή σχήματος αν υπάρχει
             if "svg_diagram" in current_q:
-                st.components.v1.html(current_q["svg_diagram"], height=250)
+                st.components.v1.html(current_q["svg_diagram"], height=300)
                 
             choices = current_q.get("choices") or current_q.get("options") or []
             prev_ans = answers.get(st.session_state.current_index, None)
