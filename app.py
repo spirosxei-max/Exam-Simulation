@@ -45,10 +45,10 @@ while len(ALL_QUESTIONS) < TOTAL_REQUIRED:
     })
 
 QC_OPTIONS = [
-    "A: Quantity A is greater.",
-    "B: Quantity B is greater.",
-    "C: The two quantities are equal.",
-    "D: The relationship cannot be determined from the information given."
+    "The quantity in Quantity A is greater.",
+    "The quantity in Quantity B is greater.",
+    "The two quantities are equal.",
+    "The relationship cannot be determined from the information given."
 ]
 QC_KEYS = ["A", "B", "C", "D"]
 
