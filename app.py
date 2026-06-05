@@ -54,6 +54,7 @@ QC_KEYS = ["A", "B", "C", "D"]
 
 # --- ΑΡΧΙΚΟΠΟΙΗΣΗ SESSION STATE ΜΕ ΣΤΑΘΕΡΟ SEED ---
 if "initialized" not in st.session_state:
+    st.session_state.app_mode = "MENU"  # <-- ΠΡΟΣΘΕΤΟΥΜΕ ΑΥΤΗ ΤΗ ΓΡΑΜΜΗ
     st.session_state.test_seed = random.randint(1, 100000)
     rng = random.Random(st.session_state.test_seed)
     
@@ -67,6 +68,25 @@ if "initialized" not in st.session_state:
     st.session_state.sec2_answers = {}
     st.session_state.section_start_time = time.time()
     st.session_state.initialized = True
+# --- STARTUP MENU ---
+if st.session_state.app_mode == "MENU":
+    st.title("🎯 GRE Exam Simulator")
+    st.write("Welcome to the official Shorter GRE Simulation platform. Choose a simulation below to begin your practice.")
+    
+    st.divider()
+    
+    # Μεγάλο, εμφανές κουμπί για την έναρξη του Quant Simulation
+    if st.button("🚀 Start Quant Simulation", use_container_width=True):
+        # Μόλις πατηθεί, ανανεώνουμε τον χρόνο έναρξης και αλλάζουμε το mode σε QUANT
+        st.session_state.section_start_time = time.time()
+        st.session_state.app_mode = "QUANT"
+        st.rerun()
+        
+    # Placeholder για το μελλοντικό Verbal Simulation (απενεργοποιημένο για την ώρα)
+    st.button("📚 Start Verbal Simulation (Coming Soon)", disabled=True, use_container_width=True)
+    
+    st.stop() # Σταματάει την εκτέλεση του υπόλοιπου κώδικα (τεστ, χρονόμετρα, sidebar) όσο είμαστε στο μενού
+
 
 # --- ΔΙΑΧΕΙΡΙΣΗ ΧΡΟΝΟΥ ΑΝΑ SECTION ---
 if st.session_state.current_section != "FINISHED":
