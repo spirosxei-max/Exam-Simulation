@@ -130,88 +130,87 @@ if st.session_state.current_section != "FINISHED":
 question_id = current_q.get('id', 'N/A')
 st.caption(f"Source: {book_source} | ID: {question_id}")
 
-st.divider()
-# 1. Ασφαλής ανάκτηση του τύπου ερώτησης
-    q_type = current_q.get("type") or current_q.get("question_type")
-
-    # 2. QUANTITATIVE COMPARISON (QC)
-    if q_type in ["QC", "quantitative_comparison"]:
-        # Εμφάνιση κειμένου/πλαισίου ερώτησης αν υπάρχει
-        context_text = current_q.get("context") or current_q.get("text") or current_q.get("question") or ""
-        if context_text:
-            st.markdown(context_text)
-            
-        # Εμφάνιση του γεωμετρικού σχήματος αν υπάρχει
-        if "svg_diagram" in current_q:
-            st.components.v1.html(current_q["svg_diagram"], height=220)
-
-        col1, col2 = st.columns(2)
-        with col1:
-            st.info(f"**Quantity A**\n\n### {current_q['quantity_a']}")
-        with col2:
-            st.success(f"**Quantity B**\n\n### {current_q['quantity_b']}")
-            
-        # Διαχείριση επιλογών και απαντήσεων (υποστήριξη για παλιά QC_KEYS ή νέα options)
-        options = current_q.get("options") or QC_OPTIONS
-        prev_ans = answers.get(st.session_state.current_index, None)
-        
-        # Mapping για παλιές απαντήσεις (A, B, C, D) σε index αν χρειάζεται
-        ans_mapping = {"A": 0, "B": 1, "C": 2, "D": 3}
-        if prev_ans in ans_mapping:
-            default_idx = ans_mapping[prev_ans]
-        elif prev_ans in QC_KEYS:
-            default_idx = QC_KEYS.index(prev_ans)
-        else:
-            default_idx = prev_ans if isinstance(prev_ans, int) and prev_ans < len(options) else None
-        
-        user_choice = st.radio("Select your answer:", options, index=default_idx, key=f"q_{st.session_state.current_section}_{st.session_state.current_index}")
-        if user_choice:
-            if "options" in current_q:
-                answers[st.session_state.current_index] = options.index(user_choice)
-            else:
-                answers[st.session_state.current_index] = QC_KEYS[QC_OPTIONS.index(user_choice)]
-
-    # 3. NUMERIC ENTRY (NE)
-    elif q_type in ["NE", "numeric_entry"]:
-        question_text = current_q.get("question") or current_q.get("text") or ""
-        st.markdown(question_text)
-        
-        prev_ans = answers.get(st.session_state.current_index, "")
-        user_choice = st.text_input("Enter numeric value:", value=str(prev_ans), key=f"q_{st.session_state.current_section}_{st.session_state.current_index}")
-        if user_choice:
-            answers[st.session_state.current_index] = user_choice.strip()
-
-    # 4. MULTIPLE CHOICE (MC) & MULTIPLE SELECTION (MS)
-    else:
-        question_text = current_q.get("question") or current_q.get("text") or ""
-        st.markdown(question_text)
-        
-        # Εμφάνιση του γραφήματος ή σχήματος αν υπάρχει
-        if "svg_diagram" in current_q:
-            st.components.v1.html(current_q["svg_diagram"], height=250)
-            
-        choices = current_q.get("choices") or current_q.get("options") or []
-        prev_ans = answers.get(st.session_state.current_index, None)
-        
-        # Αν η ερώτηση απαιτεί πολλαπλή επιλογή (Checkboxes)
-        if q_type in ["MS", "multiple_selection"]:
-            st.info("💡 Choose all that apply.")
-            if not isinstance(prev_ans, list):
-                prev_ans = []
+    st.divider()
+        # 1. Ασφαλής ανάκτηση του τύπου ερώτησης
+        q_type = current_q.get("type") or current_q.get("question_type")
+    
+        # 2. QUANTITATIVE COMPARISON (QC)
+        if q_type in ["QC", "quantitative_comparison"]:
+            # Εμφάνιση κειμένου/πλαισίου ερώτησης αν υπάρχει
+            context_text = current_q.get("context") or current_q.get("text") or current_q.get("question") or ""
+            if context_text:
+                st.markdown(context_text)
                 
-            user_choices = []
-            for idx, opt in enumerate(choices):
-                is_checked = idx in prev_ans
-                if st.checkbox(opt, value=is_checked, key=f"q_{st.session_state.current_section}_{st.session_state.current_index}_{idx}"):
-                    user_choices.append(idx)
-            answers[st.session_state.current_index] = user_choices
-        else:
-            # Κλασική πολλαπλή επιλογή (Radio Buttons)
-            default_idx = choices.index(prev_ans) if prev_ans in choices else None
-            user_choice = st.radio("Select one option:", choices, index=default_idx, key=f"q_{st.session_state.current_section}_{st.session_state.current_index}")
+            # Εμφάνιση του γεωμετρικού σχήματος αν υπάρχει
+            if "svg_diagram" in current_q:
+                st.components.v1.html(current_q["svg_diagram"], height=220)
+    
+            col1, col2 = st.columns(2)
+            with col1:
+                st.info(f"**Quantity A**\n\n### {current_q['quantity_a']}")
+            with col2:
+                st.success(f"**Quantity B**\n\n### {current_q['quantity_b']}")
+                
+            # Διαχείριση επιλογών και απαντήσεων (υποστήριξη για παλιά QC_KEYS ή νέα options)
+            options = current_q.get("options") or QC_OPTIONS
+            prev_ans = answers.get(st.session_state.current_index, None)
+            
+            # Mapping για παλιές απαντήσεις (A, B, C, D) σε index αν χρειάζεται
+            ans_mapping = {"A": 0, "B": 1, "C": 2, "D": 3}
+            if prev_ans in ans_mapping:
+                default_idx = ans_mapping[prev_ans]
+            elif prev_ans in QC_KEYS:
+                default_idx = QC_KEYS.index(prev_ans)
+            else:
+                default_idx = prev_ans if isinstance(prev_ans, int) and prev_ans < len(options) else None
+            
+            user_choice = st.radio("Select your answer:", options, index=default_idx, key=f"q_{st.session_state.current_section}_{st.session_state.current_index}")
             if user_choice:
-                answers[st.session_state.current_index] = user_choice
-
+                if "options" in current_q:
+                    answers[st.session_state.current_index] = options.index(user_choice)
+                else:
+                    answers[st.session_state.current_index] = QC_KEYS[QC_OPTIONS.index(user_choice)]
+    
+        # 3. NUMERIC ENTRY (NE)
+        elif q_type in ["NE", "numeric_entry"]:
+            question_text = current_q.get("question") or current_q.get("text") or ""
+            st.markdown(question_text)
+            
+            prev_ans = answers.get(st.session_state.current_index, "")
+            user_choice = st.text_input("Enter numeric value:", value=str(prev_ans), key=f"q_{st.session_state.current_section}_{st.session_state.current_index}")
+            if user_choice:
+                answers[st.session_state.current_index] = user_choice.strip()
+    
+        # 4. MULTIPLE CHOICE (MC) & MULTIPLE SELECTION (MS)
+        else:
+            question_text = current_q.get("question") or current_q.get("text") or ""
+            st.markdown(question_text)
+            
+            # Εμφάνιση του γραφήματος ή σχήματος αν υπάρχει
+            if "svg_diagram" in current_q:
+                st.components.v1.html(current_q["svg_diagram"], height=250)
+                
+            choices = current_q.get("choices") or current_q.get("options") or []
+            prev_ans = answers.get(st.session_state.current_index, None)
+            
+            # Αν η ερώτηση απαιτεί πολλαπλή επιλογή (Checkboxes)
+            if q_type in ["MS", "multiple_selection"]:
+                st.info("💡 Choose all that apply.")
+                if not isinstance(prev_ans, list):
+                    prev_ans = []
+                    
+                user_choices = []
+                for idx, opt in enumerate(choices):
+                    is_checked = idx in prev_ans
+                    if st.checkbox(opt, value=is_checked, key=f"q_{st.session_state.current_section}_{st.session_state.current_index}_{idx}"):
+                        user_choices.append(idx)
+                answers[st.session_state.current_index] = user_choices
+            else:
+                # Κλασική πολλαπλή επιλογή (Radio Buttons)
+                default_idx = choices.index(prev_ans) if prev_ans in choices else None
+                user_choice = st.radio("Select one option:", choices, index=default_idx, key=f"q_{st.session_state.current_section}_{st.session_state.current_index}")
+                if user_choice:
+                    answers[st.session_state.current_index] = user_choice
 st.divider()
     c_prev, c_center, c_next = st.columns(3)
     with c_prev:
