@@ -241,14 +241,14 @@ with col_score:
         tab1, tab2 = st.tabs(["Section 1 (12 Qs)", "Section 2 (15 Qs)"])
         with tab1:
             for i, q in enumerate(st.session_state.sec1_questions):
-            user_ans = st.session_state.sec1_answers.get(i, "Not Answered")
-            is_correct = user_ans == q["correct_answer"]
-            with st.expander(f"Question {i+1} — {'✅ Correct' if is_correct else '❌ Incorrect'}"):
-                st.markdown(q.get("question", q.get("context", "")))
-                if q["type"] == "QC":
-                    st.write(f"**Quantity A:** {q['quantity_a']} | **Quantity B:** {q['quantity_b']}")
-                    st.write(f"Your Answer: `{user_ans}` | Correct Answer: `{q['correct_answer']}`")
-                    st.info(f"**Explanation:** {q['explanation']}")
+                user_ans = st.session_state.sec1_answers.get(i, "Not Answered")
+                is_correct = user_ans == q["correct_answer"]
+        with st.expander(f"Question {i+1} — {'✅ Correct' if is_correct else '❌ Incorrect'}"):
+            st.markdown(q.get("question", q.get("context", "")))
+            if q["type"] == "QC":
+                st.write(f"**Quantity A:** {q['quantity_a']} | **Quantity B:** {q['quantity_b']}")
+                st.write(f"Your Answer: `{user_ans}` | Correct Answer: `{q['correct_answer']}`")
+                st.info(f"**Explanation:** {q['explanation']}")
                 
     with tab2:
         for i, q in enumerate(st.session_state.sec2_questions):
