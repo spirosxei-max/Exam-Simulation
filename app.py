@@ -172,7 +172,8 @@ if q_type in ["QC", "quantitative_comparison"]:
     
         # 3. NUMERIC ENTRY (NE)
         elif q_type in ["NE", "numeric_entry"]:
-            question_text = current_q.get("question") or current_q.get("text") or ""
+            question_text = current_q.get("question") or current_q.get("text") or current_q.get("context") or ""
+
             st.markdown(question_text)
             
             prev_ans = answers.get(st.session_state.current_index, "")
@@ -182,7 +183,7 @@ if q_type in ["QC", "quantitative_comparison"]:
     
         # 4. MULTIPLE CHOICE (MC) & MULTIPLE SELECTION (MS)
         else:
-            question_text = current_q.get("question") or current_q.get("text") or ""
+            question_text = current_q.get("question") or current_q.get("text") or current_q.get("context") or ""
             st.markdown(question_text)
             
             # Εμφάνιση του γραφήματος ή σχήματος αν υπάρχει
