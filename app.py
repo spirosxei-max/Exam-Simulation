@@ -244,31 +244,35 @@ with col_score:
         with tab1:
             for i, q in enumerate(st.session_state.sec1_questions):
                 user_ans = st.session_state.sec1_answers.get(i, "Not Answered")
-                is_correct = user_ans == q.get("correct_answer")
+                is_correct = str(user_ans) == str(q.get("correct_answer"))
+                
                 with st.expander(f"Question {i+1} — {'✅ Correct' if is_correct else '❌ Incorrect'}"):
                     q_text = q.get("question") or q.get("context") or q.get("text") or ""
                     st.markdown(q_text)
-        
+                    
                     q_type = q.get("type") or q.get("question_type")
                     if q_type in ["QC", "quantitative_comparison"]:
-                        st.write(f"**Quantity A:** {q['quantity_a']} | **Quantity B:** {q['quantity_b']}")
+                        st.write(f"**Quantity A:** {q.get('quantity_a', '')} | **Quantity B:** {q.get('quantity_b', '')}")
                         
-                    st.write(f"Your Answer: `{user_ans}` | Correct Answer: `{q['correct_answer']}`")
-                    st.info(f"**Explanation:** {q['explanation']}")
-                
+                    st.write(f"Your Answer: `{user_ans}` | Correct Answer: `{q.get('correct_answer')}`")
+                    st.info(f"**Explanation:** {q.get('explanation', 'No explanation available.')}")
+                    
         with tab2:
             for i, q in enumerate(st.session_state.sec2_questions):
                 user_ans = st.session_state.sec2_answers.get(i, "Not Answered")
-                is_correct = user_ans == q.get("correct_answer")
+                is_correct = str(user_ans) == str(q.get("correct_answer"))
+                
                 with st.expander(f"Question {i+1} — {'✅ Correct' if is_correct else '❌ Incorrect'}"):
-                    q_text = q.get("question") or q.get("context") or ""
+                    q_text = q.get("question") or q.get("context") or q.get("text") or ""
                     st.markdown(q_text)
-
+                    
                     q_type = q.get("type") or q.get("question_type")
                     if q_type in ["QC", "quantitative_comparison"]:
-                        st.write(f"**Quantity A:** {q['quantity_a']} | **Quantity B:** {q['quantity_b']}")
-                    st.write(f"Your Answer: `{user_ans}` | Correct Answer: `{q['correct_answer']}`")
-                    st.info(f"**Explanation:** {q['explanation']}")
+                        st.write(f"**Quantity A:** {q.get('quantity_a', '')} | **Quantity B:** {q.get('quantity_b', '')}")
+                        
+                    st.write(f"Your Answer: `{user_ans}` | Correct Answer: `{q.get('correct_answer')}`")
+                    st.info(f"**Explanation:** {q.get('explanation', 'No explanation available.')}")
+
     
         if st.button("🔄 Start New Simulation"):
             st.session_state.clear()
