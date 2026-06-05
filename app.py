@@ -1,320 +1,267 @@
 import streamlit as st
+import json
 import time
 import random
-import json
-import os
+from pathlib import Path
 from streamlit_autorefresh import st_autorefresh
 
-st.set_page_config(page_title="Official Shorter GRE Quant Simulator", page_icon="🎓", layout="centered")
+st.set_page_config(page_title="GRE Quant Simulator", page_icon="🎓", layout="centered")
 
-# --- LIVE REFRESH ΚΑΘΕ 1 ΔΕΥΤΕΡΟΛΕΠΤΟ ---
-# Αυτό αναγκάζει το Streamlit να τρέχει τον κώδικα κάθε 1000ms για να ανανεώνεται το ρολόι ζωντανά
-if "current_section" in st.session_state and st.session_state.current_section != "FINISHED":
-    st_autorefresh(interval=1000, key="datetimerefresh")
+SEC1_COUNT = 12
+SEC2_COUNT = 15
+SEC1_TIME = 21 * 60
+SEC2_TIME = 26 * 60
 
-# --- ΦΟΡΤΩΣΗ ΕΡΩΤΗΣΕΩΝ ΑΠΟ JSON ---
+QC_OPTIONS = {
+    "A": "Quantity A is greater.",
+    "B": "Quantity B is greater.",
+    "C": "The two quantities are equal.",
+    "D": "The relationship cannot be determined."
+}
+
 @st.cache_data
 def load_questions():
-    filename = "questions_pool.json"
-    if os.path.exists(filename):
-        with open(filename, "r", encoding="utf-8") as f:
-            return json.load(f)
-    return []
+    path = Path(__file__).parent / "questions_pool.json"
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
 
-RAW_QUESTIONS = load_questions()
+def initialize_exam():
+    questions = load_questions()
+    total = SEC1_COUNT + SEC2_COUNT
 
-# --- ΡΥΘΜΙΣΕΙΣ SHORTER GRE ---
-SEC1_COUNT = 12
-SEC1_TIME = 21 * 60  # 21 λεπτά
-SEC2_COUNT = 15
-SEC2_TIME = 26 * 60  # 26 λεπτά
-TOTAL_REQUIRED = SEC1_COUNT + SEC2_COUNT  # 27 ερωτήσεις συνολικά
+    if len(questions) < total:
+        raise ValueError(f"Need at least {total} questions. Found {len(questions)}")
 
-# Μηχανισμός ασφαλείας: Συμπλήρωση με μοναδικές dummy ερωτήσεις χωρίς διπλότυπα
-ALL_QUESTIONS = list(RAW_QUESTIONS)
-while len(ALL_QUESTIONS) < TOTAL_REQUIRED:
-    current_len = len(ALL_QUESTIONS)
-    ALL_QUESTIONS.append({
-        "id": f"DUMMY_{current_len}",
-        "book": "GRE Question Bank (Placeholder)",
-        "question_type": "multiple_choice",
-        "question": f"Placeholder Question {current_len}: If $x + 2 = 5$, what is the value of $x$?",
-        "options": ["1", "2", "3", "4", "5"],
-        "correct_answer": "3",
-        "explanation": "This is a placeholder question because your JSON pool has less than 27 questions. $x = 5 - 2 = 3$."
+    rng = random.Random(random.randint(1, 999999))
+    sampled = rng.sample(questions, total)
+
+    st.session_state.update({
+        "initialized": True,
+        "app_mode": "MENU",
+        "current_section": 1,
+        "current_index": 0,
+        "section_start_time": time.time(),
+        "sec1_questions": sampled[:SEC1_COUNT],
+        "sec2_questions": sampled[SEC1_COUNT:],
+        "sec1_answers": {},
+        "sec2_answers": {},
+        "flagged": set()
     })
 
+def get_questions():
+    return st.session_state.sec1_questions if st.session_state.current_section == 1 else st.session_state.sec2_questions
 
-QC_OPTIONS = [
-    "Quantity A is greater.",
-    "Quantity B is greater.",
-    "The two quantities are equal.",
-    "The relationship cannot be determined from the information given."
-]
-QC_KEYS = ["A", "B", "C", "D"]
+def get_answers():
+    return st.session_state.sec1_answers if st.session_state.current_section == 1 else st.session_state.sec2_answers
 
-# --- ΑΡΧΙΚΟΠΟΙΗΣΗ SESSION STATE ΜΕ ΣΤΑΘΕΡΟ SEED ---
-if "initialized" not in st.session_state:
-    st.session_state.app_mode = "MENU"  # <-- ΠΡΟΣΘΕΤΟΥΜΕ ΑΥΤΗ ΤΗ ΓΡΑΜΜΗ
-    st.session_state.test_seed = random.randint(1, 100000)
-    rng = random.Random(st.session_state.test_seed)
-    
-    sampled = rng.sample(ALL_QUESTIONS, TOTAL_REQUIRED)
-    st.session_state.sec1_questions = sampled[:SEC1_COUNT]
-    st.session_state.sec2_questions = sampled[SEC1_COUNT:]
-    
-    st.session_state.current_section = 1  # 1, 2 ή "FINISHED"
-    st.session_state.current_index = 0
-    st.session_state.sec1_answers = {}
-    st.session_state.sec2_answers = {}
-    st.session_state.section_start_time = time.time()
-    st.session_state.initialized = True
-# --- STARTUP MENU ---
-if st.session_state.get("app_mode", "MENU") == "MENU":
-
-    st.title("🎯 GRE Exam Simulator")
-    st.write("Welcome to the official Shorter GRE Simulation platform. Choose a simulation below to begin your practice.")
-    
-    st.divider()
-    
-    # Μεγάλο, εμφανές κουμπί για την έναρξη του Quant Simulation
-    if st.button("🚀 Start Quant Simulation", use_container_width=True):
-        # Μόλις πατηθεί, ανανεώνουμε τον χρόνο έναρξης και αλλάζουμε το mode σε QUANT
-        st.session_state.section_start_time = time.time()
-        st.session_state.app_mode = "QUANT"
-        st.rerun()
-        
-    # Placeholder για το μελλοντικό Verbal Simulation (απενεργοποιημένο για την ώρα)
-    st.button("📚 Start Verbal Simulation (Coming Soon)", disabled=True, use_container_width=True)
-    
-    st.stop() # Σταματάει την εκτέλεση του υπόλοιπου κώδικα (τεστ, χρονόμετρα, sidebar) όσο είμαστε στο μενού
-
-
-# --- ΔΙΑΧΕΙΡΙΣΗ ΧΡΟΝΟΥ ΑΝΑ SECTION ---
-if st.session_state.current_section != "FINISHED":
+def get_remaining():
     limit = SEC1_TIME if st.session_state.current_section == 1 else SEC2_TIME
-    elapsed = time.time() - st.session_state.section_start_time
-    remaining = max(0, limit - int(elapsed))
-    
-    if remaining == 0:
-        if st.session_state.current_section == 1:
-            st.session_state.current_section = 2
-            st.session_state.current_index = 0
-            st.session_state.section_start_time = time.time()
-            st.toast("⏱️ Section 1 time is up! Moving to Section 2.")
-            st.rerun()
-        else:
-            st.session_state.current_section = "FINISHED"
-            st.rerun()
-else:
-    remaining = 0
+    elapsed = int(time.time() - st.session_state.section_start_time)
+    return max(0, limit - elapsed)
 
-# --- SIDEBAR ΠΛΟΗΓΗΣΗΣ ---
-st.sidebar.title("Shorter GRE Quant")
+def save_answer(value):
+    get_answers()[st.session_state.current_index] = value
 
-if st.session_state.current_section != "FINISHED":
-    st.sidebar.markdown(f"### **🗂️ Section {st.session_state.current_section}**")
+def render_qc(q):
+    if q.get("svg_diagram"):
+        st.components.v1.html(q["svg_diagram"], height=300)
+
+    if q.get("context"):
+        st.markdown(q["context"])
+
+    c1, c2 = st.columns(2)
+    with c1:
+        st.info(q.get("quantity_a", ""))
+    with c2:
+        st.info(q.get("quantity_b", ""))
+
+    current = get_answers().get(st.session_state.current_index, "A")
+    choice = st.radio(
+        "Select answer",
+        list(QC_OPTIONS.keys()),
+        index=list(QC_OPTIONS.keys()).index(current) if current in QC_OPTIONS else 0,
+        format_func=lambda x: QC_OPTIONS[x]
+    )
+    save_answer(choice)
+
+def render_mc(q):
+    opts = q.get("options") or q.get("choices") or []
+    prev = get_answers().get(st.session_state.current_index)
+
+    idx = opts.index(prev) if prev in opts else 0
+
+    choice = st.radio("Select one answer", opts, index=idx)
+    save_answer(choice)
+
+def render_ms(q):
+    opts = q.get("options") or q.get("choices") or []
+    prev = get_answers().get(st.session_state.current_index, [])
+
+    selected = []
+    for opt in opts:
+        checked = opt in prev
+        if st.checkbox(opt, value=checked, key=f"ms_{st.session_state.current_index}_{opt}"):
+            selected.append(opt)
+
+    save_answer(selected)
+
+def render_ne(q):
+    prev = get_answers().get(st.session_state.current_index, "")
+    value = st.text_input("Enter numeric answer", value=str(prev))
+    save_answer(value.strip())
+
+def render_question(q):
+    qtype = q.get("question_type") or q.get("type")
+
+    st.caption(f"Source: {q.get('book','Unknown')} | ID: {q.get('id','N/A')}")
+
+    if qtype in ["quantitative_comparison", "QC"]:
+        render_qc(q)
+
+    elif qtype in ["multiple_selection", "MS"]:
+        if q.get("question"):
+            st.markdown(q["question"])
+        render_ms(q)
+
+    elif qtype in ["numeric_entry", "NE"]:
+        st.markdown(q.get("question") or q.get("text") or "")
+        render_ne(q)
+
+    else:
+        st.markdown(q.get("question") or q.get("text") or q.get("context") or "")
+        if q.get("svg_diagram"):
+            st.components.v1.html(q["svg_diagram"], height=300)
+        render_mc(q)
+
+def is_correct(user, correct):
+    if isinstance(correct, list):
+        return set(user) == set(correct)
+    return str(user).strip() == str(correct).strip()
+
+def calculate_results():
+    s1 = sum(
+        is_correct(st.session_state.sec1_answers.get(i), q.get("correct_answer"))
+        for i, q in enumerate(st.session_state.sec1_questions)
+    )
+
+    s2 = sum(
+        is_correct(st.session_state.sec2_answers.get(i), q.get("correct_answer"))
+        for i, q in enumerate(st.session_state.sec2_questions)
+    )
+
+    raw = s1 + s2
+    total = SEC1_COUNT + SEC2_COUNT
+    scaled = 130 + round((raw / total) * 40)
+
+    return s1, s2, raw, scaled
+
+def render_sidebar():
+    remaining = get_remaining()
+
     mins, secs = divmod(remaining, 60)
-    # Προβολή του live χρονομέτρου στη sidebar
-    st.sidebar.metric(label="⏱️ Time Remaining", value=f"{mins:02d}:{secs:02d}")
-    
-    questions = st.session_state.sec1_questions if st.session_state.current_section == 1 else st.session_state.sec2_questions
-    answers = st.session_state.sec1_answers if st.session_state.current_section == 1 else st.session_state.sec2_answers
-    
-    st.sidebar.subheader("Review/Navigate")
+
+    st.sidebar.metric("⏱️ Time Remaining", f"{mins:02d}:{secs:02d}")
+
+    questions = get_questions()
+    answers = get_answers()
+
+    st.sidebar.subheader("Questions")
+
     for i in range(len(questions)):
+        flag = "🚩" if i in st.session_state.flagged else ""
         status = "✅" if i in answers else "⚪"
-        if st.sidebar.button(f"{status} Question {i+1}", key=f"nav_{i}"):
+
+        if st.sidebar.button(f"{status} {flag} Q{i+1}", key=f"nav_{i}"):
             st.session_state.current_index = i
             st.rerun()
-            
-    st.sidebar.divider()
+
+def advance_section():
     if st.session_state.current_section == 1:
-        if st.sidebar.button("➡️ Submit Section 1", use_container_width=True, type="secondary"):
-            st.session_state.current_section = 2
-            st.session_state.current_index = 0
-            st.session_state.section_start_time = time.time()
-            st.rerun()
+        st.session_state.current_section = 2
+        st.session_state.current_index = 0
+        st.session_state.section_start_time = time.time()
     else:
-        if st.sidebar.button("🚨 Final Test Submit", use_container_width=True, type="primary"):
-            st.session_state.current_section = "FINISHED"
-            st.rerun()
+        st.session_state.current_section = "FINISHED"
 
-# --- ΚΥΡΙΩΣ ΟΘΟΝΗ ΕΞΕΤΑΣΗΣ ---
-if st.session_state.current_section != "FINISHED":
-    questions = st.session_state.sec1_questions if st.session_state.current_section == 1 else st.session_state.sec2_questions
-    answers = st.session_state.sec1_answers if st.session_state.current_section == 1 else st.session_state.sec2_answers
-    
-    current_q = questions[st.session_state.current_index]
-    
-    st.subheader(f"Section {st.session_state.current_section} — Question {st.session_state.current_index + 1} of {len(questions)}")
-    book_source = current_q.get('book', 'Unknown Source')
-question_id = current_q.get('id', 'N/A')
-book_source = current_q.get('book', 'Unknown Source')
-question_id = current_q.get('id', 'N/A')
-st.caption(f"Source: {book_source} | ID: {question_id}")
-st.divider()
-# 1. Ασφαλής ανάκτηση του τύπου ερώτησης
-q_type = current_q.get("type") or current_q.get("question_type") 
-# 2. QUANTITATIVE COMPARISON (QC)
-if q_type in ["QC", "quantitative_comparison"]:
-    # Εμφάνιση κειμένου/πλαισίου ερώτησης αν υπάρχει
-    context_text = current_q.get("context") or current_q.get("text") or current_q.get("question") or ""
-    if context_text:
-        st.markdown(context_text)
-        # Εμφάνιση του γεωμετρικού σχήματος αν υπάρχει
-        if "svg_diagram" in current_q:
-            st.components.v1.html(current_q["svg_diagram"], height=300)
-            
-            col1, col2 = st.columns(2)
-            with col1:
-                st.info(f"**Quantity A**\n\n### {current_q['quantity_a']}")
-            with col2:
-                st.success(f"**Quantity B**\n\n### {current_q['quantity_b']}")
-                
-            # Διαχείριση επιλογών και απαντήσεων (υποστήριξη για παλιά QC_KEYS ή νέα options)
-            options = current_q.get("options") or QC_OPTIONS
-            prev_ans = answers.get(st.session_state.current_index, None)
-            
-            # Mapping για παλιές απαντήσεις (A, B, C, D) σε index αν χρειάζεται
-            ans_mapping = {"A": 0, "B": 1, "C": 2, "D": 3}
-            if prev_ans in ans_mapping:
-                default_idx = ans_mapping[prev_ans]
-            elif prev_ans in QC_KEYS:
-                default_idx = QC_KEYS.index(prev_ans)
-            else:
-                default_idx = prev_ans if isinstance(prev_ans, int) and prev_ans < len(options) else None
-            
-            user_choice = st.radio("Select your answer:", options, index=default_idx, key=f"q_{st.session_state.current_section}_{st.session_state.current_index}")
-            if user_choice:
-                if "options" in current_q:
-                    answers[st.session_state.current_index] = options.index(user_choice)
-                else:
-                    answers[st.session_state.current_index] = QC_KEYS[QC_OPTIONS.index(user_choice)]
-    
-        # 3. NUMERIC ENTRY (NE)
-        elif q_type in ["NE", "numeric_entry"]:
-            question_text = current_q.get("question") or current_q.get("text") or current_q.get("context") or ""
+    st.rerun()
 
-            st.markdown(question_text)
-            
-            prev_ans = answers.get(st.session_state.current_index, "")
-            user_choice = st.text_input("Enter numeric value:", value=str(prev_ans), key=f"q_{st.session_state.current_section}_{st.session_state.current_index}")
-            if user_choice:
-                answers[st.session_state.current_index] = user_choice.strip()
-    
-        # 4. MULTIPLE CHOICE (MC) & MULTIPLE SELECTION (MS)
+def render_exam():
+    st_autorefresh(interval=1000, key="timer")
+
+    if get_remaining() == 0:
+        advance_section()
+
+    render_sidebar()
+
+    questions = get_questions()
+    idx = st.session_state.current_index
+    q = questions[idx]
+
+    st.subheader(
+        f"Section {st.session_state.current_section} - Question {idx + 1} of {len(questions)}"
+    )
+
+    render_question(q)
+
+    st.divider()
+
+    if st.button("🚩 Flag / Unflag"):
+        if idx in st.session_state.flagged:
+            st.session_state.flagged.remove(idx)
         else:
-            question_text = current_q.get("question") or current_q.get("text") or current_q.get("context") or ""
-            st.markdown(question_text)
-            
-            # Εμφάνιση του γραφήματος ή σχήματος αν υπάρχει
-            if "svg_diagram" in current_q:
-                st.components.v1.html(current_q["svg_diagram"], height=300)
-                
-            choices = current_q.get("choices") or current_q.get("options") or []
-            prev_ans = answers.get(st.session_state.current_index, None)
-            
-            # Αν η ερώτηση απαιτεί πολλαπλή επιλογή (Checkboxes)
-            if q_type in ["MS", "multiple_selection"]:
-                st.info("💡 Choose all that apply.")
-                if not isinstance(prev_ans, list):
-                    prev_ans = []
-                    
-                user_choices = []
-                for idx, opt in enumerate(choices):
-                    is_checked = idx in prev_ans
-                    if st.checkbox(opt, value=is_checked, key=f"q_{st.session_state.current_section}_{st.session_state.current_index}_{idx}"):
-                        user_choices.append(idx)
-                answers[st.session_state.current_index] = user_choices
-            else:
-                # Κλασική πολλαπλή επιλογή (Radio Buttons)
-                default_idx = choices.index(prev_ans) if prev_ans in choices else None
-                user_choice = st.radio("Select one option:", choices, index=default_idx, key=f"q_{st.session_state.current_section}_{st.session_state.current_index}")
-                if user_choice:
-                    answers[st.session_state.current_index] = user_choice
-st.divider()
-# --- ΔΙΟΡΘΩΜΕΝΟ FOOTER ΠΛΟΗΓΗΣΗΣ ---
-st.divider()
-nav_cols = st.columns(3)
-with nav_cols[0]:
-    if st.session_state.current_index > 0:
-        if st.button("⬅️ Prev", use_container_width=True):
+            st.session_state.flagged.add(idx)
+        st.rerun()
+
+    c1, c2, c3 = st.columns(3)
+
+    with c1:
+        if idx > 0 and st.button("⬅️ Previous"):
             st.session_state.current_index -= 1
             st.rerun()
-                    
-            with nav_cols[2]:
-                if st.session_state.current_index < len(questions) - 1:
-                    if st.button("Next ➡️", use_container_width=True):
-                        st.session_state.current_index += 1
-                        st.rerun()
-                    else:
-                        # Αν φτάσαμε στο τέλος του Section 1 (12η ερώτηση), δείξε το κουμπί για το Section 2
-                        if st.session_state.current_section == 1:
-                            if st.button("Go to Section 2 🚀", use_container_width=True):
-                                st.session_state.current_section = 2
-                                st.session_state.current_index = 0
-                                st.session_state.section_start_time = time.time()  # 26 νέα λεπτά για το Section 2!
-                                st.rerun()
-                                # Αν φτάσαμε στο τέλος του Section 2 (15η ερώτηση), δείξε το Finish
-                elif st.session_state.current_section == 2:
-                    if st.button("🏁 Finish Exam", use_container_width=True):
-                        st.session_state.current_section = "FINISHED"
-                        st.rerun()
 
-            
+    with c3:
+        if idx < len(questions) - 1:
+            if st.button("Next ➡️"):
+                st.session_state.current_index += 1
+                st.rerun()
+        else:
+            label = "Go to Section 2 🚀" if st.session_state.current_section == 1 else "🏁 Finish Exam"
+            if st.button(label):
+                advance_section()
 
-# --- ΟΘΟΝΗ ΤΕΛΙΚΩΝ ΑΠΟΤΕΛΕΣΜΑΤΩΝ ---
-    else:
-        st.title("🏁 Official GRE Score Report")
-        st.divider()
-        sec1_correct = sum(1 for i, q in enumerate(st.session_state.sec1_questions) if st.session_state.sec1_answers.get(i) == q["correct_answer"])
-        sec2_correct = sum(1 for i, q in enumerate(st.session_state.sec2_questions) if st.session_state.sec2_answers.get(i) == q["correct_answer"])
-        total_raw_score = sec1_correct + sec2_correct
-        max_raw_score = SEC1_COUNT + SEC2_COUNT  
-        final_scaled_score = 130 + int(round((total_raw_score / max_raw_score) * 40))
-        st.markdown("### Your Performance")
-        col_score, col_raw = st.columns(2)
-        with col_score:
-            st.metric(label="📊 GRE Quant Scaled Score", value=f"{final_scaled_score} / 170")
-            with col_raw:
-                st.metric(label="🎯 Total Correct Answers", value=f"{total_raw_score} / {max_raw_score}")
-                st.progress((final_scaled_score - 130) / 40)
-                st.subheader("Review Sections")
-                tab1, tab2 = st.tabs(["Section 1 (12 Qs)", "Section 2 (15 Qs)"])
-                with tab1:
-                    for i, q in enumerate(st.session_state.sec1_questions):
-                        user_ans = st.session_state.sec1_answers.get(i, "Not Answered")
-                        is_correct = str(user_ans) == str(q.get("correct_answer"))
-                        
-                        with st.expander(f"Question {i+1} — {'✅ Correct' if is_correct else '❌ Incorrect'}"):
-                            q_text = q.get("question") or q.get("context") or q.get("text") or ""
-                            st.markdown(q_text)
-                            
-                            q_type = q.get("type") or q.get("question_type")
-                            if q_type in ["QC", "quantitative_comparison"]:
-                                st.write(f"**Quantity A:** {q.get('quantity_a', '')} | **Quantity B:** {q.get('quantity_b', '')}")
-                                
-                            st.write(f"Your Answer: `{user_ans}` | Correct Answer: `{q.get('correct_answer')}`")
-                            st.info(f"**Explanation:** {q.get('explanation', 'No explanation available.')}")
-                            
-                with tab2:
-                    for i, q in enumerate(st.session_state.sec2_questions):
-                        user_ans = st.session_state.sec2_answers.get(i, "Not Answered")
-                        is_correct = str(user_ans) == str(q.get("correct_answer"))
-                        
-                        with st.expander(f"Question {i+1} — {'✅ Correct' if is_correct else '❌ Incorrect'}"):
-                            q_text = q.get("question") or q.get("context") or q.get("text") or ""
-                            st.markdown(q_text)
-                            
-                            q_type = q.get("type") or q.get("question_type")
-                            if q_type in ["QC", "quantitative_comparison"]:
-                                st.write(f"**Quantity A:** {q.get('quantity_a', '')} | **Quantity B:** {q.get('quantity_b', '')}")
-                                
-                            st.write(f"Your Answer: `{user_ans}` | Correct Answer: `{q.get('correct_answer')}`")
-                            st.info(f"**Explanation:** {q.get('explanation', 'No explanation available.')}")
-        
-            
-                if st.button("🔄 Start New Simulation"):
-                    st.session_state.clear()
-                    st.rerun()
+def render_results():
+    s1, s2, raw, scaled = calculate_results()
+
+    st.title("🏁 GRE Score Report")
+
+    a, b = st.columns(2)
+
+    with a:
+        st.metric("Scaled Score", f"{scaled}/170")
+
+    with b:
+        st.metric("Correct Answers", raw)
+
+    st.progress((scaled - 130) / 40)
+
+    if st.button("🔄 New Simulation"):
+        st.session_state.clear()
+        st.rerun()
+
+if "initialized" not in st.session_state:
+    initialize_exam()
+
+if st.session_state.app_mode == "MENU":
+    st.title("🎯 GRE Quant Simulator")
+
+    if st.button("🚀 Start Quant Simulation", use_container_width=True):
+        st.session_state.app_mode = "EXAM"
+        st.session_state.section_start_time = time.time()
+        st.rerun()
+
+    st.stop()
+
+if st.session_state.current_section == "FINISHED":
+    render_results()
+else:
+    render_exam()
