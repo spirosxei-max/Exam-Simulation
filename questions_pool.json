@@ -502,7 +502,8 @@
   ],
   "correct_answer": "9",
   "explanation": "Let the original three-digit integer be represented as $100a + 10b + c$, where a, b, and c are its digits. Interchanging the hundreds and units digits gives its \"hash\", which is $100c + 10b + a$. The difference between the original integer and its hash is $(100a + 10b + c) - (100c + 10b + a) = 99a - 99c = 99(a - c)$. The absolute value of this difference is $99|a - c|$. Since 99 is a multiple of 9 ($99 = 9 \\times 11$), the absolute value of the difference must always be divisible by 9."
-},
+}
+]
 
 
 
