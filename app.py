@@ -36,12 +36,12 @@ while len(ALL_QUESTIONS) < TOTAL_REQUIRED:
     current_len = len(ALL_QUESTIONS)
     ALL_QUESTIONS.append({
         "id": f"DUMMY_{current_len}",
-        "book": "GRE Question Bank (Placeholder)",
-        "type": "MC",
+        "book": "Placeholder Bank",
+        "question_type": "multiple_choice", # <-- ΠΡΟΣΟΧΗ: question_type και όχι type
         "question": f"Placeholder Question {current_len}: If $x + 2 = 5$, what is the value of $x$?",
-        "choices": ["1", "2", "3", "4", "5"],
+        "options": ["1", "2", "3", "4", "5"], # <-- ΠΡΟΣΟΧΗ: options και όχι choices
         "correct_answer": "3",
-        "explanation": "This is a placeholder question because your JSON pool has less than 27 questions. $x = 5 - 2 = 3$."
+        "explanation": "This is a placeholder."
     })
 
 QC_OPTIONS = [
