@@ -130,7 +130,7 @@ if st.session_state.current_section != "FINISHED":
 question_id = current_q.get('id', 'N/A')
 st.caption(f"Source: {book_source} | ID: {question_id}")
 
-    st.divider()
+st.divider()
 
         # 1. Ασφαλής ανάκτηση του τύπου ερώτησης
     q_type = current_q.get("type") or current_q.get("question_type")
