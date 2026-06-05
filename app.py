@@ -209,17 +209,17 @@ if q_type in ["QC", "quantitative_comparison"]:
                 if user_choice:
                     answers[st.session_state.current_index] = user_choice
 st.divider()
-    c_prev, c_center, c_next = st.columns(3)
-    with c_prev:
-        if st.session_state.current_index > 0:
-            if st.button("⬅️ Back", use_container_width=True):
-                st.session_state.current_index -= 1
-                st.rerun()
-    with c_next:
-        if st.session_state.current_index < len(questions) - 1:
-            if st.button("Next ➡️", use_container_width=True):
-                st.session_state.current_index += 1
-                st.rerun()
+c_prev, c_center, c_next = st.columns(3)
+with c_prev:
+    if st.session_state.current_index > 0:
+        if st.button("⬅️ Back", use_container_width=True):
+            st.session_state.current_index -= 1
+            st.rerun()
+with c_next:
+    if st.session_state.current_index < len(questions) - 1:
+        if st.button("Next ➡️", use_container_width=True):
+            st.session_state.current_index += 1
+            st.rerun()
 
 # --- ΟΘΟΝΗ ΤΕΛΙΚΩΝ ΑΠΟΤΕΛΕΣΜΑΤΩΝ ---
 else:
