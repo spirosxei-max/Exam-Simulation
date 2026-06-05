@@ -157,4 +157,20 @@
     "correct_answer": "300,000",
     "explanation": "Τα έτη 1980-1982 inclusive είναι 3 πιθανά έτη, άρα 3 επιλογές για τα πρώτα 2 ψηφία. Τα επόμενα 5 ψηφία μπορούν να πάρουν οποιαδήποτε τιμή από το 0 έως το 9 (10 επιλογές το καθένα). Συνολικά: 3 * 10 * 10 * 10 * 10 * 10 = 300,000 συνδυασμοί."
   }
+  {
+  "question_type": "quantitative_comparison",
+  "svg_diagram": "<svg xmlns='http://w3.org' viewBox='0 0 400 200' width='100%' height='100%' style='background-color: transparent;'> <!-- Main Triangle Lines --> <line x1='80' y1='140' x2='280' y2='140' stroke='black' stroke-width='1.5'/> <line x1='200' y1='40' x2='200' y2='140' stroke='black' stroke-width='1.5'/> <line x1='80' y1='140' x2='200' y2='40' stroke='black' stroke-width='1.5'/> <line x1='200' y1='40' x2='280' y2='140' stroke='black' stroke-width='1.5'/> <!-- Right Angle Indicator at S --> <path d='M 188 140 L 188 128 L 200 128' fill='none' stroke='black' stroke-width='1.2'/> <!-- Angle Arcs --> <!-- 20 degree arc --> <path d='M 185 52 A 15 15 0 0 0 200 55' fill='none' stroke='black' stroke-width='1'/> <!-- 45 degree arc --> <path d='M 260 140 A 20 20 0 0 0 266 122' fill='none' stroke='black' stroke-width='1'/> <!-- Vertex Labels --> <text x='65' y='145' font-family='Arial, sans-serif' font-style='italic' font-size='16'>P</text> <text x='195' y='158' font-family='Arial, sans-serif' font-style='italic' font-size='16'>S</text> <text x='290' y='145' font-family='Arial, sans-serif' font-style='italic' font-size='16'>R</text> <text x='195' y='30' font-family='Arial, sans-serif' font-style='italic' font-size='16'>Q</text> <!-- Value Labels --> <text x='170' y='65' font-family='Arial, sans-serif' font-size='13'>20°</text> <text x='242' y='133' font-family='Arial, sans-serif' font-size='13'>45°</text> <text x='248' y='85' font-family='Arial, sans-serif' font-size='14'>2</text> </svg>",
+  "text": "In the figure above, line segment QS is perpendicular to line segment PR.",
+  "quantity_a": "√8",
+  "quantity_b": "The length of line segment PR",
+  "options": [
+    "The quantity in Quantity A is greater.",
+    "The quantity in Quantity B is greater.",
+    "The two quantities are equal.",
+    "The relationship cannot be determined from the information given."
+  ],
+  "correct_answer": 0,
+  "explanation": "In right triangle QSR, the angle at R is 45°, so it is an isosceles right triangle where QS = SR. Using the hypotenuse QR = 2, we find QS = SR = 2 / √2 = √2. In right triangle PSQ, tan(20°) = PS / QS, which means PS = QS * tan(20°) = √2 * tan(20°). The total length of PR is PS + SR = √2 * tan(20°) + √2 ≈ 1.414 * 0.364 + 1.414 ≈ 0.514 + 1.414 = 1.928. Quantity A is √8 ≈ 2.828. Therefore, Quantity A is greater."
+}
+
 ]
