@@ -230,29 +230,25 @@ sec2_correct = sum(1 for i, q in enumerate(st.session_state.sec2_questions) if s
 total_raw_score = sec1_correct + sec2_correct
 max_raw_score = SEC1_COUNT + SEC2_COUNT  
 final_scaled_score = 130 + int(round((total_raw_score / max_raw_score) * 40))
-    
-    st.markdown("### Your Performance")
-    col_score, col_raw = st.columns(2)
-    with col_score:
-        st.metric(label="📊 GRE Quant Scaled Score", value=f"{final_scaled_score} / 170")
+st.markdown("### Your Performance")
+col_score, col_raw = st.columns(2)
+with col_score:
+    st.metric(label="📊 GRE Quant Scaled Score", value=f"{final_scaled_score} / 170")
     with col_raw:
         st.metric(label="🎯 Total Correct Answers", value=f"{total_raw_score} / {max_raw_score}")
-        
-    st.progress((final_scaled_score - 130) / 40)
-    
-    st.subheader("Review Sections")
-    tab1, tab2 = st.tabs(["Section 1 (12 Qs)", "Section 2 (15 Qs)"])
-    
-    with tab1:
-        for i, q in enumerate(st.session_state.sec1_questions):
+        st.progress((final_scaled_score - 130) / 40)
+        st.subheader("Review Sections")
+        tab1, tab2 = st.tabs(["Section 1 (12 Qs)", "Section 2 (15 Qs)"])
+        with tab1:
+            for i, q in enumerate(st.session_state.sec1_questions):
             user_ans = st.session_state.sec1_answers.get(i, "Not Answered")
             is_correct = user_ans == q["correct_answer"]
             with st.expander(f"Question {i+1} — {'✅ Correct' if is_correct else '❌ Incorrect'}"):
                 st.markdown(q.get("question", q.get("context", "")))
                 if q["type"] == "QC":
                     st.write(f"**Quantity A:** {q['quantity_a']} | **Quantity B:** {q['quantity_b']}")
-                st.write(f"Your Answer: `{user_ans}` | Correct Answer: `{q['correct_answer']}`")
-                st.info(f"**Explanation:** {q['explanation']}")
+                    st.write(f"Your Answer: `{user_ans}` | Correct Answer: `{q['correct_answer']}`")
+                    st.info(f"**Explanation:** {q['explanation']}")
                 
     with tab2:
         for i, q in enumerate(st.session_state.sec2_questions):
