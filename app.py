@@ -64,7 +64,7 @@ def save_answer(value):
 
 def render_qc(q):
     if q.get("svg_diagram"):
-        st.components.v1.html(q["svg_diagram"], height=300)
+        st.components.v1.html(q["svg_diagram"], height=800)
 
     if q.get("context"):
         st.markdown(q["context"])
@@ -130,7 +130,7 @@ def render_question(q):
     else:
         st.markdown(q.get("question") or q.get("text") or q.get("context") or "")
         if q.get("svg_diagram"):
-            st.components.v1.html(q["svg_diagram"], height=300)
+            st.components.v1.html(q["svg_diagram"], height=800)
         render_mc(q)
 
 def is_correct(user, correct):
@@ -319,7 +319,7 @@ def render_results():
             if q.get("svg_diagram"):
                 st.components.v1.html(
                     q["svg_diagram"],
-                    height=300
+                    height=800
                 )
 
             if q.get("explanation"):
