@@ -129,22 +129,19 @@ if st.session_state.current_section != "FINISHED":
     book_source = current_q.get('book', 'Unknown Source')
 question_id = current_q.get('id', 'N/A')
 st.caption(f"Source: {book_source} | ID: {question_id}")
-
-    st.divider()
-        # 1. Ασφαλής ανάκτηση του τύπου ερώτησης
-        q_type = current_q.get("type") or current_q.get("question_type")
-    
-        # 2. QUANTITATIVE COMPARISON (QC)
-        if q_type in ["QC", "quantitative_comparison"]:
-            # Εμφάνιση κειμένου/πλαισίου ερώτησης αν υπάρχει
-            context_text = current_q.get("context") or current_q.get("text") or current_q.get("question") or ""
-            if context_text:
-                st.markdown(context_text)
-                
-            # Εμφάνιση του γεωμετρικού σχήματος αν υπάρχει
-            if "svg_diagram" in current_q:
-                st.components.v1.html(current_q["svg_diagram"], height=220)
-    
+st.divider()
+# 1. Ασφαλής ανάκτηση του τύπου ερώτησης
+q_type = current_q.get("type") or current_q.get("question_type") 
+# 2. QUANTITATIVE COMPARISON (QC)
+if q_type in ["QC", "quantitative_comparison"]:
+    # Εμφάνιση κειμένου/πλαισίου ερώτησης αν υπάρχει
+    context_text = current_q.get("context") or current_q.get("text") or current_q.get("question") or ""
+    if context_text:
+        st.markdown(context_text)
+        # Εμφάνιση του γεωμετρικού σχήματος αν υπάρχει
+        if "svg_diagram" in current_q:
+            st.components.v1.html(current_q["svg_diagram"], height=220)
+            
             col1, col2 = st.columns(2)
             with col1:
                 st.info(f"**Quantity A**\n\n### {current_q['quantity_a']}")
