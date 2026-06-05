@@ -130,7 +130,7 @@
 {
     "id": "MP_DIAG_Q9",
     "book": "Manhattan Prep 5lb",
-    "question_type": "MC",
+    "question_type": "multiple_choice",
     "question": "If $\\frac{52}{x}$ is a positive integer, how many integer values are possible for $x$?",
     "choices": ["5", "6", "7", "8", "10"],
     "correct_answer": "6",
@@ -147,7 +147,7 @@
   {
     "id": "MP_DIAG_Q11",
     "book": "Manhattan Prep 5lb",
-    "question_type": "MC",
+    "question_type": "multiple_choice",
     "question": "If $7^9 + 7^9 + 7^9 + 7^9 + 7^9 + 7^9 + 7^9 = 7^x$, what is the value of $x$?",
     "choices": ["9", "10", "12", "63", "9^7"],
     "correct_answer": "10",
@@ -172,7 +172,7 @@
   {
     "id": "MP_DIAG_Q14",
     "book": "Manhattan Prep 5lb",
-    "question_type": "MC",
+    "question_type": "multiple_choice",
     "question": "If $a^3b^4c^7 > 0$, which of the following statements must be true? Select the correct option.",
     "choices": ["ab is negative.", "abc is positive.", "ac is positive.", "None of the above."],
     "correct_answer": "ac is positive.",
@@ -181,7 +181,7 @@
   {
     "id": "MP_DIAG_Q18",
     "book": "Manhattan Prep 5lb",
-    "question_type": "MC",
+    "question_type": "multiple_choice",
     "question": "A number $x$ is 32% of a number $y$. If $y$ is 20% of $z$, what is $z$ in terms of $x$?",
     "choices": ["0.064x", "0.64x", "6.4x", "15.625x", "156.25x"],
     "correct_answer": "15.625x",
@@ -190,7 +190,7 @@
   {
     "id": "MP_DIAG_Q19",
     "book": "Manhattan Prep 5lb",
-    "question_type": "MC",
+    "question_type": "multiple_choice",
     "question": "If $S^2 > T^2$, which of the following must be true?",
     "choices": ["S > T", "S^2 > T", "ST > 0", "|S| > |T|", "ST < 0"],
     "correct_answer": "|S| > |T|",
@@ -199,7 +199,7 @@
   {
     "id": "MP_DIAG_Q20",
     "book": "Manhattan Prep 5lb",
-    "question_type": "MC",
+    "question_type": "multiple_choice",
     "question": "In a certain nation, every citizen is assigned an identification number consisting of the last two digits of the person’s birth year, followed by five other numerical digits. How many identification numbers are possible for people born in the years 1980–1982, inclusive?",
     "choices": ["360", "2,880", "288,800", "300,000", "2,400,000"],
     "correct_answer": "300,000",
@@ -586,7 +586,7 @@
 {
   "id": "MP_DIAG_Q10",
   "book": "Manhattan Prep 5lb",
-  "question_type": "MC",
+  "question_type": "multiple_choice",
   "question": "Rachel, David, and Kristen decide to pool their money to buy a video game system. David contributes 4 dollars more than twice what Kristen does, and Kristen contributes 3 dollars less than Rachel does. If Rachel contributes r dollars, then, in terms of r, how much does David contribute?",
   "choices": [
     "$\\frac{r - 7}{2}$",
@@ -601,7 +601,7 @@
 {
   "id": "MP_DIAG_Q11",
   "book": "Manhattan Prep 5lb",
-  "question_type": "MC",
+  "question_type": "multiple_choice",
   "question": "If $x \\neq 0$ and $y = \\frac{x + 1}{x} - 1$, what is $\\frac{1}{y}$?",
   "choices": [
     "x",
