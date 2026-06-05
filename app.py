@@ -222,7 +222,7 @@ with c_next:
             st.rerun()
 
 # --- ΟΘΟΝΗ ΤΕΛΙΚΩΝ ΑΠΟΤΕΛΕΣΜΑΤΩΝ ---
-else:
+    else:
     st.title("🏁 Official GRE Score Report")
     st.divider()
     
