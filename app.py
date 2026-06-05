@@ -69,7 +69,8 @@ if "initialized" not in st.session_state:
     st.session_state.section_start_time = time.time()
     st.session_state.initialized = True
 # --- STARTUP MENU ---
-if st.session_state.app_mode == "MENU":
+if st.session_state.get("app_mode", "MENU") == "MENU":
+
     st.title("🎯 GRE Exam Simulator")
     st.write("Welcome to the official Shorter GRE Simulation platform. Choose a simulation below to begin your practice.")
     
