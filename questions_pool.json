@@ -358,23 +358,6 @@
   "id": "MP_DIAG_Q21",
   "book": "Manhattan Prep 5lb",
   "question_type": "quantitative_comparison",
-  "svg_diagram": "<svg xmlns=\"http://w3.org\" viewBox=\"0 0 400 200\" width=\"100%\" height=\"100%\" style=\"background-color: white;\"><line x1=\"80\" y1=\"140\" x2=\"280\" y2=\"140\" stroke=\"black\" stroke-width=\"1.5\"/><line x1=\"200\" y1=\"40\" x2=\"200\" y2=\"140\" stroke=\"black\" stroke-width=\"1.5\"/><line x1=\"80\" y1=\"140\" x2=\"200\" y2=\"40\" stroke=\"black\" stroke-width=\"1.5\"/><line x1=\"200\" y1=\"40\" x2=\"280\" y2=\"140\" stroke=\"black\" stroke-width=\"1.5\"/><path d=\"M 188 140 L 188 128 L 200 128\" fill=\"none\" stroke=\"black\" stroke-width=\"1.2\"/><path d=\"M 185 52 A 15 15 0 0 0 200 55\" fill=\"none\" stroke=\"black\" stroke-width=\"1\"/><path d=\"M 260 140 A 20 20 0 0 0 266 122\" fill=\"none\" stroke=\"black\" stroke-width=\"1\"/><text x=\"65\" y=\"145\" font-family=\"Arial, sans-serif\" font-style=\"italic\" font-size=\"16\">P</text><text x=\"195\" y=\"158\" font-family=\"Arial, sans-serif\" font-style=\"italic\" font-size=\"16\">S</text><text x=\"290\" y=\"145\" font-family=\"Arial, sans-serif\" font-style=\"italic\" font-size=\"16\">R</text><text x=\"195\" y=\"30\" font-family=\"Arial, sans-serif\" font-style=\"italic\" font-size=\"16\">Q</text><text x=\"170\" y=\"65\" font-family=\"Arial, sans-serif\" font-size=\"13\">20°</text><text x=\"242\" y=\"133\" font-family=\"Arial, sans-serif\" font-size=\"13\">45°</text><text x=\"248\" y=\"85\" font-family=\"Arial, sans-serif\" font-size=\"14\">2</text></svg>",
-  "text": "In the figure above, line segment QS is perpendicular to line segment PR.",
-  "quantity_a": "√8",
-  "quantity_b": "The length of line segment PR",
-  "options": [
-    "Quantity A is greater.",
-    "Quantity B is greater.",
-    "The two quantities are equal.",
-    "The relationship cannot be determined from the information given."
-  ],
-  "correct_answer": 0,
-  "explanation": "In right triangle QSR, the angle at R is 45°, so it is an isosceles right triangle where QS = SR. Using the hypotenuse QR = 2, we find QS = SR = 2 / √2 = √2. In right triangle PSQ, tan(20°) = PS / QS, which means PS = QS * tan(20°) = √2 * tan(20°). The total length of PR is PS + SR = √2 * tan(20°) + √2 ≈ 1.414 * 0.364 + 1.414 ≈ 0.514 + 1.414 = 1.928. Quantity A is √8 ≈ 2.828. Therefore, Quantity A is greater."
-},
-{
-  "id": "MP_DIAG_Q22",
-  "book": "Manhattan Prep 5lb",
-  "question_type": "quantitative_comparison",
   "context": "x and y are positive numbers.",
   "quantity_a": "$\\sqrt{x} - \\sqrt{y}$",
   "quantity_b": "$\\sqrt{x - 2\\sqrt{xy} + y}$",
@@ -388,7 +371,7 @@
   "explanation": "The expression inside the square root of Quantity B can be factored as a perfect square: $x - 2\\sqrt{xy} + y = (\\sqrt{x} - \\sqrt{y})^2$. Therefore, Quantity B is equal to $\\sqrt{(\\sqrt{x} - \\sqrt{y})^2} = |\\sqrt{x} - \\sqrt{y}|$. If $x > y$, then $\\sqrt{x} - \\sqrt{y}$ is positive, so $|\\sqrt{x} - \\sqrt{y}| = \\sqrt{x} - \\sqrt{y}$, making the two quantities equal. However, if $x < y$, then $\\sqrt{x} - \\sqrt{y}$ is negative, while Quantity B (the absolute value) is positive, making Quantity B greater. Since we do not know whether x is greater than, less than, or equal to y, the relationship cannot be determined."
 },
 {
-  "id": "MP_DIAG_Q23",
+  "id": "MP_DIAG_Q22",
   "book": "Manhattan Prep 5lb",
   "question_type": "quantitative_comparison",
   "context": "",
@@ -404,7 +387,7 @@
   "explanation": "The only prime factor of $7^2$ (which is 49) is 7, so its least prime factor is 7. The only prime factor of $2^7$ (which is 128) is 2, so its least prime factor is 2. Since 7 is greater than 2, Quantity A is greater."
 },
 {
-  "id": "MP_DIAG_Q24",
+  "id": "MP_DIAG_Q23",
   "book": "Manhattan Prep 5lb",
   "question_type": "quantitative_comparison",
   "svg_diagram": "<svg xmlns=\"http://w3.org\" viewBox=\"0 0 200 200\" width=\"100%\" height=\"100%\" style=\"background-color: white;\"><rect x=\"50\" y=\"50\" width=\"100\" height=\"100\" fill=\"#1a1a1a\" stroke=\"#888888\" stroke-width=\"1\"/><rect x=\"68\" y=\"68\" width=\"64\" height=\"64\" fill=\"white\" stroke=\"black\" stroke-width=\"1\"/></svg>",
@@ -421,7 +404,7 @@
   "explanation": "Let the side length of the smaller square be s. Its area is s², and its diagonal length is s√2. The problem states that the side width of the larger square equals this diagonal, so the larger square has a side length of s√2. The total area of the larger square is (s√2)² = 2s². The area of the shaded region is the total area minus the area of the inner white square: 2s² - s² = s². Since both the area of the smaller square (Quantity A) and the area of the shaded region (Quantity B) equal s², the two quantities are equal."
 },
 {
-  "id": "MP_DIAG_Q25",
+  "id": "MP_DIAG_Q24",
   "book": "Manhattan Prep 5lb",
   "question_type": "multiple_choice",
   "question": "The volume of a cube with edge of length 2 is how many times the volume of a cube with edge of length $\\sqrt{2}$?",
@@ -436,7 +419,7 @@
   "explanation": "The volume of a cube with edge length s is $s^3$. For the first cube, $V_1 = 2^3 = 8$. For the second cube, $V_2 = (\\sqrt{2})^3 = 2\\sqrt{2}$. To find how many times greater $V_1$ is than $V_2$, we divide $V_1$ by $V_2$: $\\frac{8}{2\\sqrt{2}} = \\frac{4}{\\sqrt{2}} = 2\\sqrt{2}$."
 },
 {
-  "id": "MP_DIAG_Q26",
+  "id": "MP_DIAG_Q25",
   "book": "Manhattan Prep 5lb",
   "question_type": "multiple_choice",
   "question": "BILLIE'S TIME SHEET FOR JULY 2\n\n• Time in: 8:57 in the morning\n• Time out: 5:16 in the afternoon\n• Time spent stacking shelves: 80% of total time spent at work\n\nAccording to the time sheet above, Billie spent approximately how many hours stacking shelves on July 2?",
@@ -451,7 +434,7 @@
   "explanation": "From 8:57 a.m. to 5:16 p.m. is exactly 8 hours and 19 minutes. Since the question asks for an approximation, we can round this total time to 8 hours and 20 minutes, which is equal to $8\\frac{1}{3}$ hours, or $\\frac{25}{3}$ hours. To find the time spent stacking shelves, calculate 80% of the total time: $\\frac{80}{100} \\times \\frac{25}{3} = \\frac{4}{5} \\times \\frac{25}{3} = \\frac{100}{15} = \\frac{20}{3} = 6\\frac{2}{3}$ hours."
 },
 {
-  "id": "MP_DIAG_Q27",
+  "id": "MP_DIAG_Q26",
   "book": "Manhattan Prep 5lb",
   "question_type": "multiple_choice",
   "question": "What is the probability that the sum of two different single-digit prime numbers will NOT be prime?",
@@ -466,7 +449,7 @@
   "explanation": "The single-digit prime numbers are 2, 3, 5, and 7. There are 6 possible pairs of two different numbers from this set: {2,3} sum=5 (prime), {2,5} sum=7 (prime), {2,7} sum=9 (not prime), {3,5} sum=8 (not prime), {3,7} sum=10 (not prime), and {5,7} sum=12 (not prime). Out of the 6 total pairs, 4 pairs result in a sum that is NOT prime. Therefore, the probability is $\\frac{4}{6}$, which simplifies to $\\frac{2}{3}$."
 },
 {
-  "id": "MP_DIAG_Q28",
+  "id": "MP_DIAG_Q27",
   "book": "Manhattan Prep 5lb",
   "question_type": "numeric_entry",
   "question": "To fill a larger concert hall, a madrigal singing group consisting of sopranos, altos, and basses, in a 5:7:3 ratio, needs at least 40 singers. What is the least number of basses the group will need?",
@@ -474,7 +457,7 @@
   "explanation": "The components of the ratio are 5:7:3, which means the total number of singers must be a multiple of $5 + 7 + 3 = 15$. Since the group needs at least 40 singers, we must look for the smallest multiple of 15 that is greater than or equal to 40, which is 45. For a total of 45 singers, each ratio unit represents $45 / 15 = 3$ singers. Therefore, the minimum number of basses needed is $3 \\times 3 = 9$ basses."
 },
 {
-  "id": "MP_DIAG_Q29",
+  "id": "MP_DIAG_Q28",
   "book": "Manhattan Prep 5lb",
   "question_type": "multiple_choice",
   "question": "If $mx + qy - nx - py = 0$, $p - q = 2$, and $\\frac{y}{x} = -\\frac{1}{3}$, then which of the following is true?",
@@ -489,7 +472,7 @@
   "explanation": "First, rewrite the given equation by grouping the terms with x and y: $mx - nx + qy - py = 0$, which factors into $(m - n)x + (q - p)y = 0$. Moving the y terms to the right side gives $(m - n)x = (p - q)y$. Dividing both sides by x yields $m - n = (p - q)(\\frac{y}{x})$. We are given that $p - q = 2$ and $\\frac{y}{x} = -\\frac{1}{3}$. Substituting these values into the equation gives $m - n = 2 \\times (-\\frac{1}{3}) = -\\frac{2}{3}$. Multiplying both sides by -1 changes the signs, resulting in $n - m = \\frac{2}{3}$."
 },
 {
-  "id": "MP_DIAG_Q30",
+  "id": "MP_DIAG_Q29",
   "book": "Manhattan Prep 5lb",
   "question_type": "multiple_choice",
   "question": "The \"hash\" of a three-digit integer with three distinct integers is defined as the result of interchanging its units and hundreds digits. The absolute value of the difference between a three-digit integer and its hash must be divisible by",
