@@ -225,14 +225,11 @@ with c_next:
     else:
         st.title("🏁 Official GRE Score Report")
 st.divider()
-    
-    sec1_correct = sum(1 for i, q in enumerate(st.session_state.sec1_questions) if st.session_state.sec1_answers.get(i) == q["correct_answer"])
-    sec2_correct = sum(1 for i, q in enumerate(st.session_state.sec2_questions) if st.session_state.sec2_answers.get(i) == q["correct_answer"])
-    
-    total_raw_score = sec1_correct + sec2_correct
-    max_raw_score = SEC1_COUNT + SEC2_COUNT
-    
-    final_scaled_score = 130 + int(round((total_raw_score / max_raw_score) * 40))
+sec1_correct = sum(1 for i, q in enumerate(st.session_state.sec1_questions) if st.session_state.sec1_answers.get(i) == q["correct_answer"])
+sec2_correct = sum(1 for i, q in enumerate(st.session_state.sec2_questions) if st.session_state.sec2_answers.get(i) == q["correct_answer"])
+total_raw_score = sec1_correct + sec2_correct
+max_raw_score = SEC1_COUNT + SEC2_COUNT  
+final_scaled_score = 130 + int(round((total_raw_score / max_raw_score) * 40))
     
     st.markdown("### Your Performance")
     col_score, col_raw = st.columns(2)
