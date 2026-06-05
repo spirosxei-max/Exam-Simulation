@@ -1,84 +1,132 @@
 [
   {
-    "id": "MP_DIAG_Q1",
-    "book": "Manhattan Prep 5lb",
-    "type": "QC",
-    "context": "Compare Quantity A and Quantity B:",
-    "quantity_a": "0.01410",
-    "quantity_b": "0.0141",
-    "correct_answer": "C",
-    "explanation": "Τα μηδενικά στο τέλος ενός δεκαδικού αριθμού μετά την υποδιαστολή δεν αλλάζουν την αξία του. Επομένως, 0.01410 = 0.0141."
-  },
+  "id": "MP_DIAG_Q1",
+  "book": "Manhattan Prep 5lb",
+  "type": "QC",
+  "context": "Compare Quantity A and Quantity B:",
+  "quantity_a": "0.01410",
+  "quantity_b": "0.0141",
+  "options": [
+    "The quantity in Quantity A is greater.",
+    "The quantity in Quantity B is greater.",
+    "The two quantities are equal.",
+    "The relationship cannot be determined from the information given."
+  ],
+  "correct_answer": "C",
+  "explanation": "Τα μηδενικά στο τέλος ενός δεκαδικού αριθμού μετά την υποδιαστολή δεν αλλάζουν την αξία του. Επομένως, 0.01410 = 0.0141."
+},
   {
-    "id": "MP_DIAG_Q2",
-    "book": "Manhattan Prep 5lb",
-    "type": "QC",
-    "context": "A certain bookstore sells only paperbacks and hardbacks. Each of the 200 paperbacks in stock sells for a price between $8 and $12, and each of the 100 hardbacks in stock sells for a price between $14 and $18.",
-    "quantity_a": "The average price of the books in stock at the bookstore",
-    "quantity_b": "$9.99",
-    "correct_answer": "A",
-    "explanation": "Ακόμη και στην ελάχιστη δυνατή τιμή για κάθε κατηγορία, ο συνολικός μέσος όρος είναι [(200 * $8) + (100 * $14)] / 300 = $3000 / 300 = $10. Επειδή το $10 είναι μεγαλύτερο από το $9.99, η Ποσότητα Α είναι μεγαλύτερη."
-  },
+  "id": "MP_DIAG_Q2",
+  "book": "Manhattan Prep 5lb",
+  "type": "QC",
+  "context": "A certain bookstore sells only paperbacks and hardbacks. Each of the 200 paperbacks in stock sells for a price between $8 and $12, and each of the 100 hardbacks in stock sells for a price between $14 and $18.",
+  "quantity_a": "The average price of the books in stock at the bookstore",
+  "quantity_b": "$9.99",
+  "options": [
+    "The quantity in Quantity A is greater.",
+    "The quantity in Quantity B is greater.",
+    "The two quantities are equal.",
+    "The relationship cannot be determined from the information given."
+  ],
+  "correct_answer": "A",
+  "explanation": "Ακόμη και στην ελάχιστη δυνατή τιμή για κάθε κατηγορία, ο συνολικός μέσος όρος είναι [(200 * $8) + (100 * $14)] / 300 = $3000 / 300 = $10. Επειδή το $10 είναι μεγαλύτερο από το $9.99, η Ποσότητα Α είναι μεγαλύτερη."
+},
   {
-    "id": "MP_DIAG_Q3",
-    "book": "Manhattan Prep 5lb",
-    "type": "QC",
-    "context": "Given that $2 < x < 4$:",
-    "quantity_a": "$\\frac{x-4}{2}$",
-    "quantity_b": "$\\frac{x-4}{x}$",
-    "correct_answer": "B",
-    "explanation": "Επειδή $2 < x < 4$, ο όρος (x-4) είναι αρνητικός αριθμός. Στην Ποσότητα Α, διαιρούμε έναν αρνητικό αριθμό με το 2. Στην Ποσότητα Β, διαιρούμε τον ίδιο αρνητικό αριθμό με το x (το οποίο είναι μεγαλύτερο από το 2). Η διαίρεση με μεγαλύτερο θετικό αριθμό κάνει το αρνητικό αποτέλεσμα λιγότερο αρνητικό (δηλαδή μεγαλύτερο). Συνεπώς, η Ποσότητα Β είναι μεγαλύτερη."
-  },
-  {
-    "id": "MP_DIAG_Q4",
-    "book": "Manhattan Prep 5lb",
-    "type": "QC",
-    "context": "In the $xy$-plane, line segment $AB$ connects points $A(1, 3)$ and $B(4, 7)$, and line segment $AC$ connects points $A(1, 3)$ and $C(5, 6)$.",
-    "quantity_a": "The slope of line segment AB",
-    "quantity_b": "The slope of line segment AC",
-    "correct_answer": "A",
-    "explanation": "Η κλίση (slope) του AB είναι (7-3)/(4-1) = 4/3 = 1.33. Η κλίση του AC είναι (6-3)/(5-1) = 3/4 = 0.75. Το 1.33 > 0.75, άρα η Ποσότητα Α είναι μεγαλύτερη."
-  },
-  {
-    "id": "MP_DIAG_Q5",
-    "book": "Manhattan Prep 5lb",
-    "type": "QC",
-    "context": "A circle is inscribed in a square that has an area of 16.",
-    "quantity_a": "The area of the shaded region outside the circle but inside the square",
-    "quantity_b": "1",
-    "correct_answer": "A",
-    "explanation": "Αφού το τετράγωνο έχει εμβαδόν 16, η πλευρά του είναι 4, άρα η διάμετρος του κύκλου είναι 4 και η ακτίνα του r = 2. Το εμβαδόν του κύκλου είναι $\\pi r^2 = 4\\pi \\approx 12.57$. Η σκιασμένη περιοχή είναι 16 - 12.57 = 3.43. Το 3.43 > 1, άρα η Ποσότητα Α είναι μεγαλύτερη."
-  },
-  {
-    "id": "MP_DIAG_Q6",
-    "book": "Manhattan Prep 5lb",
-    "type": "QC",
-    "context": "Given that $a > 1$ and $b > 5$:",
-    "quantity_a": "$(5b)^a$",
-    "quantity_b": "$(b^2)^a$",
-    "correct_answer": "D",
-    "explanation": "Επειδή οι εκθέτες είναι ίδιοι (a), συγκρίνουμε τις βάσεις: 5b έναντι $b^2$. Αν b = 5, τότε 5(5) = 25 και $5^2 = 25$ (ίσες). Αν b = 6, τότε 5(6) = 30 και $6^2 = 36$ (Ποσότητα Β μεγαλύτερη). Η σχέση δεν μπορεί να προσδιοριστεί σταθερά."
-  },
-  {
-    "id": "MP_DIAG_Q7",
-    "book": "Manhattan Prep 5lb",
-    "type": "QC",
-    "context": "Compare the two algebraic expressions:",
-    "quantity_a": "$(5 + a)(3 + a)$",
-    "quantity_b": "$a^2 + 2a + 15$",
-    "correct_answer": "D",
-    "explanation": "Αναπτύσσοντας την Ποσότητα Α έχουμε: 15 + 5a + 3a + $a^2 = a^2 + 8a + 15$. Αφαιρώντας το $a^2 + 15$ και από τις δύο ποσότητες, συγκρίνουμε το 8a (Ποσότητα Α) με το 2a (Ποσότητα Β). Επειδή δεν δίνονται περιορισμοί για το a, η σχέση δεν μπορεί να προσδιοριστεί."
-  },
-  {
-    "id": "MP_DIAG_Q8",
-    "book": "Manhattan Prep 5lb",
-    "type": "QC",
-    "context": "In triangle $ABC$, $AB = 12$, $AC = 10$, and $BC = 5$.",
-    "quantity_a": "The measure of angle A",
-    "quantity_b": "The measure of angle C",
-    "correct_answer": "B",
-    "explanation": "Σε ένα τρίγωνο, η μεγαλύτερη γωνία βρίσκεται πάντα απέναντι από τη μεγαλύτερη πλευρά. Η πλευρά απέναντι από τη γωνία C είναι η AB = 12. Η πλευρά απέναντι από τη γωνία A είναι η BC = 5. Αφού 12 > 5, η γωνία C είναι μεγαλύτερη από τη γωνία A."
-  },
+  "id": "MP_DIAG_Q3",
+  "book": "Manhattan Prep 5lb",
+  "type": "QC",
+  "context": "Given that $2 < x < 4$:",
+  "quantity_a": "$\\frac{x-4}{2}$",
+  "quantity_b": "$\\frac{x-4}{x}$",
+  "options": [
+    "The quantity in Quantity A is greater.",
+    "The quantity in Quantity B is greater.",
+    "The two quantities are equal.",
+    "The relationship cannot be determined from the information given."
+  ],
+  "correct_answer": "B",
+  "explanation": "Επειδή $2 < x < 4$, ο όρος (x-4) είναι αρνητικός αριθμός. Στην Ποσότητα Α, διαιρούμε έναν αρνητικό αριθμό με το 2. Στην Ποσότητα Β, διαιρούμε τον ίδιο αρνητικό αριθμό με το x (το οποίο είναι μεγαλύτερο από το 2). Η διαίρεση με μεγαλύτερο θετικό αριθμό κάνει το αρνητικό αποτέλεσμα λιγότερο αρνητικό (δηλαδή μεγαλύτερο). Συνεπώς, η Ποσότητα Β είναι μεγαλύτερη."
+},
+{
+  "id": "MP_DIAG_Q4",
+  "book": "Manhattan Prep 5lb",
+  "type": "QC",
+  "context": "In the $xy$-plane, line segment $AB$ connects points $A(1, 3)$ and $B(4, 7)$, and line segment $AC$ connects points $A(1, 3)$ and $C(5, 6)$.",
+  "quantity_a": "The slope of line segment AB",
+  "quantity_b": "The slope of line segment AC",
+  "options": [
+    "The quantity in Quantity A is greater.",
+    "The quantity in Quantity B is greater.",
+    "The two quantities are equal.",
+    "The relationship cannot be determined from the information given."
+  ],
+  "correct_answer": "A",
+  "explanation": "Η κλίση (slope) του AB είναι (7-3)/(4-1) = 4/3 = 1.33. Η κλίση του AC είναι (6-3)/(5-1) = 3/4 = 0.75. Το 1.33 > 0.75, άρα η Ποσότητα Α είναι μεγαλύτερη."
+},
+{
+  "id": "MP_DIAG_Q5",
+  "book": "Manhattan Prep 5lb",
+  "type": "QC",
+  "context": "A circle is inscribed in a square that has an area of 16.",
+  "quantity_a": "The area of the shaded region outside the circle but inside the square",
+  "quantity_b": "1",
+  "options": [
+    "The quantity in Quantity A is greater.",
+    "The quantity in Quantity B is greater.",
+    "The two quantities are equal.",
+    "The relationship cannot be determined from the information given."
+  ],
+  "correct_answer": "A",
+  "explanation": "Αφού το τετράγωνο έχει εμβαδόν 16, η πλευρά του είναι 4, άρα η διάμετρος του κύκλου είναι 4 και η ακτίνα του r = 2. Το εμβαδόν του κύκλου είναι $\\pi r^2 = 4\\pi \\approx 12.57$. Η σκιασμένη περιοχή είναι 16 - 12.57 = 3.43. Το 3.43 > 1, άρα η Ποσότητα Α είναι μεγαλύτερη."
+},
+{
+  "id": "MP_DIAG_Q6",
+  "book": "Manhattan Prep 5lb",
+  "type": "QC",
+  "context": "Given that $a > 1$ and $b > 5$:",
+  "quantity_a": "$(5b)^a$",
+  "quantity_b": "$(b^2)^a$",
+  "options": [
+    "The quantity in Quantity A is greater.",
+    "The quantity in Quantity B is greater.",
+    "The two quantities are equal.",
+    "The relationship cannot be determined from the information given."
+  ],
+  "correct_answer": "D",
+  "explanation": "Επειδή οι εκθέτες είναι ίδιοι (a), συγκρίνουμε τις βάσεις: 5b έναντι $b^2$. Αν b = 5, τότε 5(5) = 25 και $5^2 = 25$ (ίσες). Αν b = 6, τότε 5(6) = 30 και $6^2 = 36$ (Ποσότητα Β μεγαλύτερη). Η σχέση δεν μπορεί να προσδιοριστεί σταθερά."
+},
+{
+  "id": "MP_DIAG_Q7",
+  "book": "Manhattan Prep 5lb",
+  "type": "QC",
+  "context": "Compare the two algebraic expressions:",
+  "quantity_a": "$(5 + a)(3 + a)$",
+  "quantity_b": "$a^2 + 2a + 15$",
+  "options": [
+    "The quantity in Quantity A is greater.",
+    "The quantity in Quantity B is greater.",
+    "The two quantities are equal.",
+    "The relationship cannot be determined from the information given."
+  ],
+  "correct_answer": "D",
+  "explanation": "Αναπτύσσοντας την Ποσότητα Α έχουμε: 15 + 5a + 3a + $a^2 = a^2 + 8a + 15$. Αφαιρώντας το $a^2 + 15$ και από τις δύο ποσότητες, συγκρίνουμε το 8a (Ποσότητα Α) με το 2a (Ποσότητα Β). Επειδή δεν δίνονται περιορισμοί για το a, η σχέση δεν μπορεί να προσδιοριστεί."
+},
+{
+  "id": "MP_DIAG_Q8",
+  "book": "Manhattan Prep 5lb",
+  "type": "QC",
+  "context": "In triangle $ABC$, $AB = 12$, $AC = 10$, and $BC = 5$.",
+  "quantity_a": "The measure of angle A",
+  "quantity_b": "The measure of angle C",
+  "options": [
+    "The quantity in Quantity A is greater.",
+    "The quantity in Quantity B is greater.",
+    "The two quantities are equal.",
+    "The relationship cannot be determined from the information given."
+  ],
+  "correct_answer": "B",
+  "explanation": "Σε ένα τρίγωνο, η μεγαλύτερη γωνία βρίσκεται πάντα απέναντι από τη μεγαλύτερη πλευρά. Η πλευρά απέναντι από τη γωνία C είναι η AB = 12. Η πλευρά απέναντι από τη γωνία A είναι η BC = 5. Αφού 12 > 5, η γωνία C είναι μεγαλύτερη από τη γωνία A."
+},
   {
     "id": "MP_DIAG_Q9",
     "book": "Manhattan Prep 5lb",
