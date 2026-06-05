@@ -221,18 +221,20 @@
   "explanation": "In right triangle QSR, the angle at R is 45°, so it is an isosceles right triangle where QS = SR. Using the hypotenuse QR = 2, we find QS = SR = 2 / √2 = √2. In right triangle PSQ, tan(20°) = PS / QS, which means PS = QS * tan(20°) = √2 * tan(20°). The total length of PR is PS + SR = √2 * tan(20°) + √2 ≈ 1.414 * 0.364 + 1.414 ≈ 0.514 + 1.414 = 1.928. Quantity A is √8 ≈ 2.828. Therefore, Quantity A is greater."
 },
 {
+  "id": "MP_DIAG_Q16",
+  "book": "Manhattan Prep 5lb",
   "question_type": "quantitative_comparison",
-  "text": "x and y are positive numbers.",
-  "quantity_a": "√x - √y",
-  "quantity_b": "√(x - 2√(xy) + y)",
+  "context": "x and y are positive numbers.",
+  "quantity_a": "$\\sqrt{x} - \\sqrt{y}$",
+  "quantity_b": "$\\sqrt{x - 2\\sqrt{xy} + y}$",
   "options": [
     "The quantity in Quantity A is greater.",
     "The quantity in Quantity B is greater.",
     "The two quantities are equal.",
     "The relationship cannot be determined from the information given."
   ],
-  "correct_answer": 3,
-  "explanation": "The expression inside the square root of Quantity B can be factored as a perfect square: x - 2√(xy) + y = (√x - √y)². Therefore, Quantity B is equal to √( (√x - √y)² ) = |√x - √y|. If x > y, then √x - √y is positive, so |√x - √y| = √x - √y, making the two quantities equal. However, if x < y, then √x - √y is negative, while Quantity B (the absolute value) is positive, making Quantity B greater. Since we do not know whether x is greater than, less than, or equal to y, the relationship cannot be determined."
+  "correct_answer": "D",
+  "explanation": "The expression inside the square root of Quantity B can be factored as a perfect square: $x - 2\\sqrt{xy} + y = (\\sqrt{x} - \\sqrt{y})^2$. Therefore, Quantity B is equal to $\\sqrt{(\\sqrt{x} - \\sqrt{y})^2} = |\\sqrt{x} - \\sqrt{y}|$. If $x > y$, then $\\sqrt{x} - \\sqrt{y}$ is positive, so $|\\sqrt{x} - \\sqrt{y}| = \\sqrt{x} - \\sqrt{y}$, making the two quantities equal. However, if $x < y$, then $\\sqrt{x} - \\sqrt{y}$ is negative, while Quantity B (the absolute value) is positive, making Quantity B greater. Since we do not know whether x is greater than, less than, or equal to y, the relationship cannot be determined."
 },
 {
   "question_type": "quantitative_comparison",
