@@ -564,7 +564,73 @@
   ],
   "correct_answer": 1,
   "explanation": "We are given that b is a negative integer (-3 < b < 0). Since b is negative, adding b to a (Quantity A) will result in a value smaller than a. On the other hand, subtracting b from a (Quantity B) is the same as adding a positive number, which will result in a value greater than a. Therefore, a - b will always be greater than a + b, making Quantity B greater."
+},
+{
+  "id": "MP_DIAG_Q9",
+  "book": "Manhattan Prep 5lb",
+  "type": "QC",
+  "context": "$0 < a < b < 1$",
+  "quantity_a": "0",
+  "quantity_b": "2(a - b)",
+  "options": [
+    "The quantity in Quantity A is greater.",
+    "The quantity in Quantity B is greater.",
+    "The two quantities are equal.",
+    "The relationship cannot be determined from the information given."
+  ],
+  "correct_answer": "A",
+  "explanation": "We are given that $a < b$, which means that $a - b$ must be a negative number. When we multiply this negative difference by 2, the result in Quantity B remains negative ($2(a - b) < 0$). Since Quantity A is exactly 0, and 0 is always greater than any negative number, Quantity A is greater. The correct choice is A."
+},
+{
+  "id": "MP_DIAG_Q10",
+  "book": "Manhattan Prep 5lb",
+  "type": "MC",
+  "question": "Rachel, David, and Kristen decide to pool their money to buy a video game system. David contributes 4 dollars more than twice what Kristen does, and Kristen contributes 3 dollars less than Rachel does. If Rachel contributes r dollars, then, in terms of r, how much does David contribute?",
+  "choices": [
+    "$\\frac{r - 7}{2}$",
+    "$\\frac{r - 2}{2}$",
+    "$\\frac{2r + 7}{2}$",
+    "$2r - 2$",
+    "$2r + 7$"
+  ],
+  "correct_answer": "$2r - 2$",
+  "explanation": "We are given that Rachel contributes $r$ dollars. Kristen contributes 3 dollars less than Rachel, so Kristen's contribution is $r - 3$. David contributes 4 dollars more than twice Kristen's contribution. Therefore, David's contribution is $2(r - 3) + 4$. Expanding this expression, we get $2r - 6 + 4 = 2r - 2$. Thus, the correct answer is $2r - 2$."
+},
+{
+  "id": "MP_DIAG_Q11",
+  "book": "Manhattan Prep 5lb",
+  "type": "MC",
+  "question": "If $x \\neq 0$ and $y = \\frac{x + 1}{x} - 1$, what is $\\frac{1}{y}$?",
+  "choices": [
+    "x",
+    "$\\frac{1}{y}$",
+    "$-x + 1$",
+    "$\\frac{x + 1}{x - 1}$",
+    "$-(x + 1)$"
+  ],
+  "correct_answer": "x",
+  "explanation": "Start by simplifying the equation given for $y$. Splitting the fraction gives $y = \\frac{x}{x} + \\frac{1}{x} - 1$. Since $\\frac{x}{x} = 1$, the equation becomes $y = 1 + \\frac{1}{x} - 1$, which simplifies to $y = \\frac{1}{x}$. To find $\\frac{1}{y}$, we take the reciprocal of both sides of $y = \\frac{1}{x}$, which gives $\\frac{1}{y} = x$. Therefore, the correct answer is x."
+},
+{
+  "id": "MP_DIAG_Q12",
+  "book": "Manhattan Prep 5lb",
+  "type": "QC",
+  "svg_diagram": "<svg xmlns=\"http://w3.org\" viewBox=\"0 0 400 80\" width=\"100%\" height=\"100%\" style=\"background-color: transparent;\"><line x1=\"50\" y1=\"40\" x2=\"350\" y2=\"40\" stroke=\"black\" stroke-width=\"1.5\"/><line x1=\"80\" y1=\"30\" x2=\"80\" y2=\"50\" stroke=\"black\" stroke-width=\"1.5\"/><line x1=\"200\" y1=\"30\" x2=\"200\" y2=\"50\" stroke=\"black\" stroke-width=\"1.5\"/><line x1=\"320\" y1=\"30\" x2=\"320\" y2=\"50\" stroke=\"black\" stroke-width=\"1.5\"/><text x=\"80\" y=\"68\" font-family=\"Arial, sans-serif\" font-size=\"14\" text-anchor=\"middle\">-1</text><text x=\"200\" y=\"68\" font-family=\"Arial, sans-serif\" font-size=\"14\" text-anchor=\"middle\">0</text><text x=\"320\" y=\"68\" font-family=\"Arial, sans-serif\" font-size=\"14\" text-anchor=\"middle\">1</text><circle cx=\"140\" cy=\"40\" r=\"4\" fill=\"black\"/><text x=\"140\" y=\"24\" font-family=\"Arial, sans-serif\" font-style=\"italic\" font-size=\"14\" text-anchor=\"middle\">x</text><circle cx=\"290\" cy=\"40\" r=\"4\" fill=\"black\"/><text x=\"290\" y=\"24\" font-family=\"Arial, sans-serif\" font-style=\"italic\" font-size=\"14\" text-anchor=\"middle\">y</text></svg>",
+  "context": "Based on the number line above:",
+  "quantity_a": "$-\\frac{x - 3}{4}$",
+  "quantity_b": "y",
+  "options": [
+    "The quantity in Quantity A is greater.",
+    "The quantity in Quantity B is greater.",
+    "The two quantities are equal.",
+    "The relationship cannot be determined from the information given."
+  ],
+  "correct_answer": "D",
+  "explanation": "From the number line, we can see that $-1 < x < 0$ and $0 < y < 1$. Let's determine the range for Quantity A: Subtracting 3 from the inequality for $x$ gives $-4 < x - 3 < -3$. Dividing all parts by 4 gives $-1 < \\frac{x - 3}{4} < -0.75$. Multiplying by $-1$ flips the inequality signs, resulting in $0.75 < -\\frac{x - 3}{4} < 1$. Therefore, Quantity A is always between $0.75$ and $1$. Since $y$ (Quantity B) can be any value between $0$ and $1$, it could be smaller than Quantity A (e.g., $y = 0.5$) or larger than Quantity A (e.g., $y = 0.95$). Because the relationship changes depending on the exact value of $y$, it cannot be determined."
 }
+
+
+
 
 
 ]
