@@ -226,54 +226,54 @@ with c_next:
 # --- ΟΘΟΝΗ ΤΕΛΙΚΩΝ ΑΠΟΤΕΛΕΣΜΑΤΩΝ ---
     else:
         st.title("🏁 Official GRE Score Report")
-st.divider()
-sec1_correct = sum(1 for i, q in enumerate(st.session_state.sec1_questions) if st.session_state.sec1_answers.get(i) == q["correct_answer"])
-sec2_correct = sum(1 for i, q in enumerate(st.session_state.sec2_questions) if st.session_state.sec2_answers.get(i) == q["correct_answer"])
-total_raw_score = sec1_correct + sec2_correct
-max_raw_score = SEC1_COUNT + SEC2_COUNT  
-final_scaled_score = 130 + int(round((total_raw_score / max_raw_score) * 40))
-st.markdown("### Your Performance")
-col_score, col_raw = st.columns(2)
-with col_score:
-    st.metric(label="📊 GRE Quant Scaled Score", value=f"{final_scaled_score} / 170")
-    with col_raw:
-        st.metric(label="🎯 Total Correct Answers", value=f"{total_raw_score} / {max_raw_score}")
-        st.progress((final_scaled_score - 130) / 40)
-        st.subheader("Review Sections")
-        tab1, tab2 = st.tabs(["Section 1 (12 Qs)", "Section 2 (15 Qs)"])
-        with tab1:
-            for i, q in enumerate(st.session_state.sec1_questions):
-                user_ans = st.session_state.sec1_answers.get(i, "Not Answered")
-                is_correct = str(user_ans) == str(q.get("correct_answer"))
-                
-                with st.expander(f"Question {i+1} — {'✅ Correct' if is_correct else '❌ Incorrect'}"):
-                    q_text = q.get("question") or q.get("context") or q.get("text") or ""
-                    st.markdown(q_text)
-                    
-                    q_type = q.get("type") or q.get("question_type")
-                    if q_type in ["QC", "quantitative_comparison"]:
-                        st.write(f"**Quantity A:** {q.get('quantity_a', '')} | **Quantity B:** {q.get('quantity_b', '')}")
+        st.divider()
+        sec1_correct = sum(1 for i, q in enumerate(st.session_state.sec1_questions) if st.session_state.sec1_answers.get(i) == q["correct_answer"])
+        sec2_correct = sum(1 for i, q in enumerate(st.session_state.sec2_questions) if st.session_state.sec2_answers.get(i) == q["correct_answer"])
+        total_raw_score = sec1_correct + sec2_correct
+        max_raw_score = SEC1_COUNT + SEC2_COUNT  
+        final_scaled_score = 130 + int(round((total_raw_score / max_raw_score) * 40))
+        st.markdown("### Your Performance")
+        col_score, col_raw = st.columns(2)
+        with col_score:
+            st.metric(label="📊 GRE Quant Scaled Score", value=f"{final_scaled_score} / 170")
+            with col_raw:
+                st.metric(label="🎯 Total Correct Answers", value=f"{total_raw_score} / {max_raw_score}")
+                st.progress((final_scaled_score - 130) / 40)
+                st.subheader("Review Sections")
+                tab1, tab2 = st.tabs(["Section 1 (12 Qs)", "Section 2 (15 Qs)"])
+                with tab1:
+                    for i, q in enumerate(st.session_state.sec1_questions):
+                        user_ans = st.session_state.sec1_answers.get(i, "Not Answered")
+                        is_correct = str(user_ans) == str(q.get("correct_answer"))
                         
-                    st.write(f"Your Answer: `{user_ans}` | Correct Answer: `{q.get('correct_answer')}`")
-                    st.info(f"**Explanation:** {q.get('explanation', 'No explanation available.')}")
-                    
-        with tab2:
-            for i, q in enumerate(st.session_state.sec2_questions):
-                user_ans = st.session_state.sec2_answers.get(i, "Not Answered")
-                is_correct = str(user_ans) == str(q.get("correct_answer"))
-                
-                with st.expander(f"Question {i+1} — {'✅ Correct' if is_correct else '❌ Incorrect'}"):
-                    q_text = q.get("question") or q.get("context") or q.get("text") or ""
-                    st.markdown(q_text)
-                    
-                    q_type = q.get("type") or q.get("question_type")
-                    if q_type in ["QC", "quantitative_comparison"]:
-                        st.write(f"**Quantity A:** {q.get('quantity_a', '')} | **Quantity B:** {q.get('quantity_b', '')}")
+                        with st.expander(f"Question {i+1} — {'✅ Correct' if is_correct else '❌ Incorrect'}"):
+                            q_text = q.get("question") or q.get("context") or q.get("text") or ""
+                            st.markdown(q_text)
+                            
+                            q_type = q.get("type") or q.get("question_type")
+                            if q_type in ["QC", "quantitative_comparison"]:
+                                st.write(f"**Quantity A:** {q.get('quantity_a', '')} | **Quantity B:** {q.get('quantity_b', '')}")
+                                
+                            st.write(f"Your Answer: `{user_ans}` | Correct Answer: `{q.get('correct_answer')}`")
+                            st.info(f"**Explanation:** {q.get('explanation', 'No explanation available.')}")
+                            
+                with tab2:
+                    for i, q in enumerate(st.session_state.sec2_questions):
+                        user_ans = st.session_state.sec2_answers.get(i, "Not Answered")
+                        is_correct = str(user_ans) == str(q.get("correct_answer"))
                         
-                    st.write(f"Your Answer: `{user_ans}` | Correct Answer: `{q.get('correct_answer')}`")
-                    st.info(f"**Explanation:** {q.get('explanation', 'No explanation available.')}")
-
-    
-        if st.button("🔄 Start New Simulation"):
-            st.session_state.clear()
-            st.rerun()
+                        with st.expander(f"Question {i+1} — {'✅ Correct' if is_correct else '❌ Incorrect'}"):
+                            q_text = q.get("question") or q.get("context") or q.get("text") or ""
+                            st.markdown(q_text)
+                            
+                            q_type = q.get("type") or q.get("question_type")
+                            if q_type in ["QC", "quantitative_comparison"]:
+                                st.write(f"**Quantity A:** {q.get('quantity_a', '')} | **Quantity B:** {q.get('quantity_b', '')}")
+                                
+                            st.write(f"Your Answer: `{user_ans}` | Correct Answer: `{q.get('correct_answer')}`")
+                            st.info(f"**Explanation:** {q.get('explanation', 'No explanation available.')}")
+        
+            
+                if st.button("🔄 Start New Simulation"):
+                    st.session_state.clear()
+                    st.rerun()
