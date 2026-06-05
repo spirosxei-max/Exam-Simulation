@@ -516,7 +516,7 @@
   ],
   "correct_answer": 1,
   "explanation": "We are given that b is a negative integer (-3 < b < 0). Since b is negative, adding b to a (Quantity A) will result in a value smaller than a. On the other hand, subtracting b from a (Quantity B) is the same as adding a positive number, which will result in a value greater than a. Therefore, a - b will always be greater than a + b, making Quantity B greater."
-},
+}
 
 
 ]
