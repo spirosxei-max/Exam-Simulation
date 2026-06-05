@@ -223,8 +223,8 @@ with c_next:
 
 # --- ΟΘΟΝΗ ΤΕΛΙΚΩΝ ΑΠΟΤΕΛΕΣΜΑΤΩΝ ---
     else:
-    st.title("🏁 Official GRE Score Report")
-    st.divider()
+        st.title("🏁 Official GRE Score Report")
+st.divider()
     
     sec1_correct = sum(1 for i, q in enumerate(st.session_state.sec1_questions) if st.session_state.sec1_answers.get(i) == q["correct_answer"])
     sec2_correct = sum(1 for i, q in enumerate(st.session_state.sec2_questions) if st.session_state.sec2_answers.get(i) == q["correct_answer"])
