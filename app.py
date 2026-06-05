@@ -213,8 +213,7 @@ st.caption(f"Source: {book_source} | ID: {question_id}")
             if user_choice:
                 answers[st.session_state.current_index] = user_choice
 
-
-    st.divider()
+st.divider()
     c_prev, c_center, c_next = st.columns(3)
     with c_prev:
         if st.session_state.current_index > 0:
