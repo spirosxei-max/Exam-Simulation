@@ -3,8 +3,14 @@ import time
 import random
 import json
 import os
+from streamlit_autorefresh import st_autorefresh
 
 st.set_page_config(page_title="Official Shorter GRE Quant Simulator", page_icon="🎓", layout="centered")
+
+# --- LIVE REFRESH ΚΑΘΕ 1 ΔΕΥΤΕΡΟΛΕΠΤΟ ---
+# Αυτό αναγκάζει το Streamlit να τρέχει τον κώδικα κάθε 1000ms για να ανανεώνεται το ρολόι ζωντανά
+if "current_section" in st.session_state and st.session_state.current_section != "FINISHED":
+    st_autorefresh(interval=1000, key="datetimerefresh")
 
 # --- ΦΟΡΤΩΣΗ ΕΡΩΤΗΣΕΩΝ ΑΠΟ JSON ---
 @st.cache_data
@@ -48,11 +54,9 @@ QC_KEYS = ["A", "B", "C", "D"]
 
 # --- ΑΡΧΙΚΟΠΟΙΗΣΗ SESSION STATE ΜΕ ΣΤΑΘΕΡΟ SEED ---
 if "initialized" not in st.session_state:
-    # Δημιουργούμε ένα μοναδικό seed για αυτή τη συνεδρία ώστε να μην αλλάζουν οι ερωτήσεις στα reloads
     st.session_state.test_seed = random.randint(1, 100000)
     rng = random.Random(st.session_state.test_seed)
     
-    # Επιλογή τυχαίων ερωτήσεων χωρίς καμία επανάληψη (sampling)
     sampled = rng.sample(ALL_QUESTIONS, TOTAL_REQUIRED)
     st.session_state.sec1_questions = sampled[:SEC1_COUNT]
     st.session_state.sec2_questions = sampled[SEC1_COUNT:]
@@ -89,6 +93,7 @@ st.sidebar.title("Shorter GRE Quant")
 if st.session_state.current_section != "FINISHED":
     st.sidebar.markdown(f"### **🗂️ Section {st.session_state.current_section}**")
     mins, secs = divmod(remaining, 60)
+    # Προβολή του live χρονομέτρου στη sidebar
     st.sidebar.metric(label="⏱️ Time Remaining", value=f"{mins:02d}:{secs:02d}")
     
     questions = st.session_state.sec1_questions if st.session_state.current_section == 1 else st.session_state.sec2_questions
