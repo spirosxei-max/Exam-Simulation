@@ -154,7 +154,43 @@ def calculate_results():
     scaled = 130 + round((raw / total) * 40)
 
     return s1, s2, raw, scaled
+def build_review():
+    review = []
 
+    for section_name, questions, answers in [
+        (
+            "Section 1",
+            st.session_state.sec1_questions,
+            st.session_state.sec1_answers
+        ),
+        (
+            "Section 2",
+            st.session_state.sec2_questions,
+            st.session_state.sec2_answers
+        )
+    ]:
+
+        for i, q in enumerate(questions):
+
+            user_answer = answers.get(i)
+
+            correct_answer = q.get("correct_answer")
+
+            correct = is_correct(
+                user_answer,
+                correct_answer
+            )
+
+            review.append({
+                "section": section_name,
+                "number": i + 1,
+                "question": q,
+                "user_answer": user_answer,
+                "correct_answer": correct_answer,
+                "correct": correct
+            })
+
+    return review
 def render_sidebar():
     remaining = get_remaining()
 
@@ -243,6 +279,52 @@ def render_results():
         st.metric("Correct Answers", raw)
 
     st.progress((scaled - 130) / 40)
+    st.divider()
+
+    st.subheader("Question Review")
+
+    review = build_review()
+
+    show_all = st.checkbox(
+        "Show correct questions too",
+        value=False
+    )
+    for item in review:
+
+        if not show_all and item["correct"]:
+            continue
+
+        q = item["question"]
+
+        icon = "✅" if item["correct"] else "❌"
+
+        with st.expander(
+            f"{icon} {item['section']} - Question {item['number']}"
+        ):
+
+            st.write(
+                f"Your Answer: {item['user_answer']}"
+            )
+
+            st.write(
+                f"Correct Answer: {item['correct_answer']}"
+            )
+
+            if q.get("question"):
+                st.markdown(q["question"])
+
+            if q.get("context"):
+                st.markdown(q["context"])
+
+            if q.get("svg_diagram"):
+                st.components.v1.html(
+                    q["svg_diagram"],
+                    height=300
+                )
+
+            if q.get("explanation"):
+                st.info(q["explanation"])
+    st.divider()
 
     if st.button("🔄 New Simulation"):
         st.session_state.clear()
