@@ -7,8 +7,8 @@
   "quantity_a": "0.01410",
   "quantity_b": "0.0141",
   "options": [
-    "The quantity in Quantity A is greater.",
-    "The quantity in Quantity B is greater.",
+    "Quantity A is greater.",
+    "Quantity B is greater.",
     "The two quantities are equal.",
     "The relationship cannot be determined from the information given."
   ],
@@ -23,8 +23,8 @@
   "quantity_a": "The average price of the books in stock at the bookstore",
   "quantity_b": "$9.99",
   "options": [
-    "The quantity in Quantity A is greater.",
-    "The quantity in Quantity B is greater.",
+    "Quantity A is greater.",
+    "Quantity B is greater.",
     "The two quantities are equal.",
     "The relationship cannot be determined from the information given."
   ],
@@ -39,8 +39,8 @@
   "quantity_a": "$\\frac{x-4}{2}$",
   "quantity_b": "$\\frac{x-4}{x}$",
   "options": [
-    "The quantity in Quantity A is greater.",
-    "The quantity in Quantity B is greater.",
+    "Quantity A is greater.",
+    "Quantity B is greater.",
     "The two quantities are equal.",
     "The relationship cannot be determined from the information given."
   ],
@@ -55,8 +55,8 @@
   "quantity_a": "The slope of line segment AB",
   "quantity_b": "The slope of line segment AC",
   "options": [
-    "The quantity in Quantity A is greater.",
-    "The quantity in Quantity B is greater.",
+    "Quantity A is greater.",
+    "Quantity B is greater.",
     "The two quantities are equal.",
     "The relationship cannot be determined from the information given."
   ],
@@ -71,8 +71,8 @@
   "quantity_a": "The area of the shaded region outside the circle but inside the square",
   "quantity_b": "1",
   "options": [
-    "The quantity in Quantity A is greater.",
-    "The quantity in Quantity B is greater.",
+    "Quantity A is greater.",
+    "Quantity B is greater.",
     "The two quantities are equal.",
     "The relationship cannot be determined from the information given."
   ],
@@ -87,8 +87,8 @@
   "quantity_a": "$(5b)^a$",
   "quantity_b": "$(b^2)^a$",
   "options": [
-    "The quantity in Quantity A is greater.",
-    "The quantity in Quantity B is greater.",
+    "Quantity A is greater.",
+    "Quantity B is greater.",
     "The two quantities are equal.",
     "The relationship cannot be determined from the information given."
   ],
@@ -103,8 +103,8 @@
   "quantity_a": "$(5 + a)(3 + a)$",
   "quantity_b": "$a^2 + 2a + 15$",
   "options": [
-    "The quantity in Quantity A is greater.",
-    "The quantity in Quantity B is greater.",
+    "Quantity A is greater.",
+    "Quantity B is greater.",
     "The two quantities are equal.",
     "The relationship cannot be determined from the information given."
   ],
@@ -119,8 +119,8 @@
   "quantity_a": "The measure of angle A",
   "quantity_b": "The measure of angle C",
   "options": [
-    "The quantity in Quantity A is greater.",
-    "The quantity in Quantity B is greater.",
+    "Quantity A is greater.",
+    "Quantity B is greater.",
     "The two quantities are equal.",
     "The relationship cannot be determined from the information given."
   ],
@@ -212,8 +212,8 @@
   "quantity_a": "√8",
   "quantity_b": "The length of line segment PR",
   "options": [
-    "The quantity in Quantity A is greater.",
-    "The quantity in Quantity B is greater.",
+    "Quantity A is greater.",
+    "Quantity B is greater.",
     "The two quantities are equal.",
     "The relationship cannot be determined from the information given."
   ],
@@ -228,8 +228,8 @@
   "quantity_a": "$\\sqrt{x} - \\sqrt{y}$",
   "quantity_b": "$\\sqrt{x - 2\\sqrt{xy} + y}$",
   "options": [
-    "The quantity in Quantity A is greater.",
-    "The quantity in Quantity B is greater.",
+    "Quantity A is greater.",
+    "Quantity B is greater.",
     "The two quantities are equal.",
     "The relationship cannot be determined from the information given."
   ],
@@ -242,8 +242,8 @@
   "quantity_a": "The least prime factor of 7²",
   "quantity_b": "The least prime factor of 2⁷",
   "options": [
-    "The quantity in Quantity A is greater.",
-    "The quantity in Quantity B is greater.",
+    "Quantity A is greater.",
+    "Quantity B is greater.",
     "The two quantities are equal.",
     "The relationship cannot be determined from the information given."
   ],
@@ -256,8 +256,8 @@
   "quantity_a": "15",
   "quantity_b": "The average (arithmetic mean) of 4a - 5c, b - 24, 8c - a, and 3d + 2b",
   "options": [
-    "The quantity in Quantity A is greater.",
-    "The quantity in Quantity B is greater.",
+    "Quantity A is greater.",
+    "Quantity B is greater.",
     "The two quantities are equal.",
     "The relationship cannot be determined from the information given."
   ],
@@ -271,8 +271,8 @@
   "quantity_a": "The area of the smaller square",
   "quantity_b": "The area of the shaded region",
   "options": [
-    "The quantity in Quantity A is greater.",
-    "The quantity in Quantity B is greater.",
+    "Quantity A is greater.",
+    "Quantity B is greater.",
     "The two quantities are equal.",
     "The relationship cannot be determined from the information given."
   ],
@@ -285,8 +285,8 @@
   "quantity_a": "(y + 17) / y",
   "quantity_b": "(y + 11) / 11",
   "options": [
-    "The quantity in Quantity A is greater.",
-    "The quantity in Quantity B is greater.",
+    "Quantity A is greater.",
+    "Quantity B is greater.",
     "The two quantities are equal.",
     "The relationship cannot be determined from the information given."
   ],
@@ -448,8 +448,8 @@
   "quantity_a": "4 times the profit from selling y units",
   "quantity_b": "16y - 4",
   "options": [
-    "The quantity in Quantity A is greater.",
-    "The quantity in Quantity B is greater.",
+    "Quantity A is greater.",
+    "Quantity B is greater.",
     "The two quantities are equal.",
     "The relationship cannot be determined from the information given."
   ],
@@ -462,8 +462,8 @@
   "quantity_a": "Any member of set J",
   "quantity_b": "1",
   "options": [
-    "The quantity in Quantity A is greater.",
-    "The quantity in Quantity B is greater.",
+    "Quantity A is greater.",
+    "Quantity B is greater.",
     "The two quantities are equal.",
     "The relationship cannot be determined from the information given."
   ],
@@ -476,8 +476,8 @@
   "quantity_a": "x",
   "quantity_b": "y",
   "options": [
-    "The quantity in Quantity A is greater.",
-    "The quantity in Quantity B is greater.",
+    "Quantity A is greater.",
+    "Quantity B is greater.",
     "The two quantities are equal.",
     "The relationship cannot be determined from the information given."
   ],
@@ -490,8 +490,8 @@
   "quantity_a": "4x",
   "quantity_b": "5y",
   "options": [
-    "The quantity in Quantity A is greater.",
-    "The quantity in Quantity B is greater.",
+    "Quantity A is greater.",
+    "Quantity B is greater.",
     "The two quantities are equal.",
     "The relationship cannot be determined from the information given."
   ],
@@ -531,8 +531,8 @@
   "quantity_a": "3a⁵",
   "quantity_b": "(3a)⁵",
   "options": [
-    "The quantity in Quantity A is greater.",
-    "The quantity in Quantity B is greater.",
+    "Quantity A is greater.",
+    "Quantity B is greater.",
     "The two quantities are equal.",
     "The relationship cannot be determined from the information given."
   ],
@@ -545,8 +545,8 @@
   "quantity_a": "Jan's rate",
   "quantity_b": "Marko's rate",
   "options": [
-    "The quantity in Quantity A is greater.",
-    "The quantity in Quantity B is greater.",
+    "Quantity A is greater.",
+    "Quantity B is greater.",
     "The two quantities are equal.",
     "The relationship cannot be determined from the information given."
   ],
@@ -559,8 +559,8 @@
   "quantity_a": "a + b",
   "quantity_b": "a - b",
   "options": [
-    "The quantity in Quantity A is greater.",
-    "The quantity in Quantity B is greater.",
+    "Quantity A is greater.",
+    "Quantity B is greater.",
     "The two quantities are equal.",
     "The relationship cannot be determined from the information given."
   ],
@@ -575,8 +575,8 @@
   "quantity_a": "0",
   "quantity_b": "2(a - b)",
   "options": [
-    "The quantity in Quantity A is greater.",
-    "The quantity in Quantity B is greater.",
+    "Quantity A is greater.",
+    "Quantity B is greater.",
     "The two quantities are equal.",
     "The relationship cannot be determined from the information given."
   ],
@@ -622,8 +622,8 @@
   "quantity_a": "$-\\frac{x - 3}{4}$",
   "quantity_b": "y",
   "options": [
-    "The quantity in Quantity A is greater.",
-    "The quantity in Quantity B is greater.",
+    "Quantity A is greater.",
+    "Quantity B is greater.",
     "The two quantities are equal.",
     "The relationship cannot be determined from the information given."
   ],
