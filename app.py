@@ -128,6 +128,8 @@ if st.session_state.current_section != "FINISHED":
     st.subheader(f"Section {st.session_state.current_section} — Question {st.session_state.current_index + 1} of {len(questions)}")
     book_source = current_q.get('book', 'Unknown Source')
 question_id = current_q.get('id', 'N/A')
+book_source = current_q.get('book', 'Unknown Source')
+question_id = current_q.get('id', 'N/A')
 st.caption(f"Source: {book_source} | ID: {question_id}")
 st.divider()
 # 1. Ασφαλής ανάκτηση του τύπου ερώτησης
